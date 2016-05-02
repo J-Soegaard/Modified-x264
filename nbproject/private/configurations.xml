@@ -222,6 +222,8 @@
         <in>checkasm-arm.S</in>
         <in>checkasm.c</in>
       </df>
+      <df name="videos">
+      </df>
       <in>config.h</in>
       <in>example.c</in>
       <in>x264.c</in>
@@ -322,8 +324,6 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 -o "$./videos/test.264" "$./videos/test.yuv"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 -o "./videos/test.264" "./videos/test.yuv"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 -o "videos/test.264" "./videos/test.yuv"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 -o "${AUTO_FOLDER}/videos/test.264" "./videos/test.yuv"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 -o "${OUTPUT_FOLDER}/videos/test.264" "./videos/test.yuv"</runcommandpicklistitem>
@@ -332,8 +332,10 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 --frames 2 --qp 10 -o "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.yuv"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 --frames 2 --qp 1 -o "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.yuv"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-res 864x464 --frames 2 -o "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.yuv"</runcommandpicklistitem>
+          <runcommandpicklistitem>x264 --input-res 864x464 --frames 2 -o "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.yuv"</runcommandpicklistitem>
+          <runcommandpicklistitem>x264 --input-res 864x464 --frames 2 -o "//dtu-storage/jsog/Documents/GitHub/Modified-x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/Modified-x264/videos/test.yuv"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" --input-res 864x464 --frames 2 -o "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/x264/videos/test.yuv"</runcommand>
+        <runcommand>x264 --input-res 864x464 --frames 2 -o "//dtu-storage/jsog/Documents/GitHub/Modified-x264/videos/test.264" "//dtu-storage/jsog/Documents/GitHub/Modified-x264/videos/test.yuv"</runcommand>
         <rundir>.</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>

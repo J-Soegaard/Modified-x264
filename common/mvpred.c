@@ -139,6 +139,13 @@ void x264_mb_predict_mv_16x16( x264_t *h, int i_list, int i_ref, int16_t mvp[2] 
         i_refc = h->mb.cache.ref[i_list][X264_SCAN8_0 - 8 - 1];
         mv_c   = h->mb.cache.mv[i_list][X264_SCAN8_0 - 8 - 1];
     }
+    
+    /*
+    printf("MB: %ix%i \n",h->mb.i_mb_x,h->mb.i_mb_y);
+    for(int i = 0;i<=X264_SCAN8_0;i++)
+        printf("%i,%i ::: ",i,h->mb.cache.mv[i_list][i][0]);
+    printf("\n");
+    */
 
     int i_count = (i_refa == i_ref) + (i_refb == i_ref) + (i_refc == i_ref);
 
