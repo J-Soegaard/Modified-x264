@@ -1,0 +1,1454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="common">
+        <df name="aarch64">
+          <in>asm-offsets.c</in>
+          <in>asm-offsets.h</in>
+          <in>asm.S</in>
+          <in>bitstream-a.S</in>
+          <in>cabac-a.S</in>
+          <in>dct-a.S</in>
+          <in>dct.h</in>
+          <in>deblock-a.S</in>
+          <in>mc-a.S</in>
+          <in>mc-c.c</in>
+          <in>mc.h</in>
+          <in>pixel-a.S</in>
+          <in>pixel.h</in>
+          <in>predict-a.S</in>
+          <in>predict-c.c</in>
+          <in>predict.h</in>
+          <in>quant-a.S</in>
+          <in>quant.h</in>
+        </df>
+        <df name="arm">
+          <in>asm.S</in>
+          <in>bitstream-a.S</in>
+          <in>cpu-a.S</in>
+          <in>dct-a.S</in>
+          <in>dct.h</in>
+          <in>deblock-a.S</in>
+          <in>mc-a.S</in>
+          <in>mc-c.c</in>
+          <in>mc.h</in>
+          <in>pixel-a.S</in>
+          <in>pixel.h</in>
+          <in>predict-a.S</in>
+          <in>predict-c.c</in>
+          <in>predict.h</in>
+          <in>quant-a.S</in>
+          <in>quant.h</in>
+        </df>
+        <df name="mips">
+          <in>dct-c.c</in>
+          <in>dct.h</in>
+          <in>deblock-c.c</in>
+          <in>macros.h</in>
+          <in>mc-c.c</in>
+          <in>mc.h</in>
+          <in>pixel-c.c</in>
+          <in>pixel.h</in>
+          <in>predict-c.c</in>
+          <in>predict.h</in>
+          <in>quant-c.c</in>
+          <in>quant.h</in>
+        </df>
+        <df name="opencl">
+          <in>x264-cl.h</in>
+        </df>
+        <df name="ppc">
+          <in>dct.c</in>
+          <in>dct.h</in>
+          <in>deblock.c</in>
+          <in>mc.c</in>
+          <in>mc.h</in>
+          <in>pixel.c</in>
+          <in>pixel.h</in>
+          <in>ppccommon.h</in>
+          <in>predict.c</in>
+          <in>predict.h</in>
+          <in>quant.c</in>
+          <in>quant.h</in>
+        </df>
+        <df name="x86">
+          <in>bitstream-a.asm</in>
+          <in>cabac-a.asm</in>
+          <in>const-a.asm</in>
+          <in>cpu-a.asm</in>
+          <in>dct-32.asm</in>
+          <in>dct-64.asm</in>
+          <in>dct-a.asm</in>
+          <in>dct.h</in>
+          <in>deblock-a.asm</in>
+          <in>mc-a.asm</in>
+          <in>mc-a2.asm</in>
+          <in>mc-c.c</in>
+          <in>mc.h</in>
+          <in>pixel-32.asm</in>
+          <in>pixel-a.asm</in>
+          <in>pixel.h</in>
+          <in>predict-a.asm</in>
+          <in>predict-c.c</in>
+          <in>predict.h</in>
+          <in>quant-a.asm</in>
+          <in>quant.h</in>
+          <in>sad-a.asm</in>
+          <in>sad16-a.asm</in>
+          <in>trellis-64.asm</in>
+          <in>util.h</in>
+          <in>x86inc.asm</in>
+          <in>x86util.asm</in>
+        </df>
+        <in>bitstream.c</in>
+        <in>bitstream.h</in>
+        <in>cabac.c</in>
+        <in>cabac.h</in>
+        <in>common.c</in>
+        <in>common.h</in>
+        <in>cpu.c</in>
+        <in>cpu.h</in>
+        <in>dct.c</in>
+        <in>dct.h</in>
+        <in>deblock.c</in>
+        <in>frame.c</in>
+        <in>frame.h</in>
+        <in>macroblock.c</in>
+        <in>macroblock.h</in>
+        <in>mc.c</in>
+        <in>mc.h</in>
+        <in>mvpred.c</in>
+        <in>oclobj.h</in>
+        <in>opencl.c</in>
+        <in>opencl.h</in>
+        <in>osdep.c</in>
+        <in>osdep.h</in>
+        <in>pixel.c</in>
+        <in>pixel.h</in>
+        <in>predict.c</in>
+        <in>predict.h</in>
+        <in>quant.c</in>
+        <in>quant.h</in>
+        <in>rectangle.c</in>
+        <in>rectangle.h</in>
+        <in>set.c</in>
+        <in>set.h</in>
+        <in>threadpool.c</in>
+        <in>threadpool.h</in>
+        <in>vlc.c</in>
+        <in>win32thread.c</in>
+        <in>win32thread.h</in>
+      </df>
+      <df name="encoder">
+        <in>analyse.c</in>
+        <in>analyse.h</in>
+        <in>cabac.c</in>
+        <in>cavlc.c</in>
+        <in>encoder.c</in>
+        <in>lookahead.c</in>
+        <in>macroblock.c</in>
+        <in>macroblock.h</in>
+        <in>me.c</in>
+        <in>me.h</in>
+        <in>ratecontrol.c</in>
+        <in>ratecontrol.h</in>
+        <in>rdo.c</in>
+        <in>set.c</in>
+        <in>set.h</in>
+        <in>slicetype-cl.c</in>
+        <in>slicetype.c</in>
+      </df>
+      <df name="extras">
+        <in>avisynth_c.h</in>
+        <in>avxsynth_c.h</in>
+        <in>cl.h</in>
+        <in>cl_platform.h</in>
+        <in>getopt.c</in>
+        <in>getopt.h</in>
+        <in>intel_dispatcher.h</in>
+        <in>inttypes.h</in>
+        <in>stdint.h</in>
+      </df>
+      <df name="filters">
+        <df name="video">
+          <in>cache.c</in>
+          <in>crop.c</in>
+          <in>depth.c</in>
+          <in>fix_vfr_pts.c</in>
+          <in>internal.c</in>
+          <in>internal.h</in>
+          <in>resize.c</in>
+          <in>select_every.c</in>
+          <in>source.c</in>
+          <in>video.c</in>
+          <in>video.h</in>
+        </df>
+        <in>filters.c</in>
+        <in>filters.h</in>
+      </df>
+      <df name="input">
+        <in>avs.c</in>
+        <in>ffms.c</in>
+        <in>input.c</in>
+        <in>input.h</in>
+        <in>lavf.c</in>
+        <in>raw.c</in>
+        <in>thread.c</in>
+        <in>timecode.c</in>
+        <in>y4m.c</in>
+      </df>
+      <df name="output">
+        <in>flv.c</in>
+        <in>flv_bytestream.c</in>
+        <in>flv_bytestream.h</in>
+        <in>matroska.c</in>
+        <in>matroska_ebml.c</in>
+        <in>matroska_ebml.h</in>
+        <in>mp4.c</in>
+        <in>mp4_lsmash.c</in>
+        <in>output.h</in>
+        <in>raw.c</in>
+      </df>
+      <df name="tools">
+        <in>checkasm-a.asm</in>
+        <in>checkasm-aarch64.S</in>
+        <in>checkasm-arm.S</in>
+        <in>checkasm.c</in>
+      </df>
+      <in>config.h</in>
+      <in>example.c</in>
+      <in>x264.c</in>
+      <in>x264.h</in>
+      <in>x264_config.h</in>
+      <in>x264cli.h</in>
+      <in>x264dll.c</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>makefile</itemPath>
+    </logicalFolder>
+    <itemPath>doc/jacob_notes.txt</itemPath>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>Cygwin|Cygwin</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
+          <executablePath>x264.exe</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand></preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="common/aarch64/asm-offsets.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/aarch64/asm-offsets.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/asm.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/bitstream-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/cabac-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/dct-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/deblock-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/mc-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/aarch64/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/pixel-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/predict-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/aarch64/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/quant-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/asm.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/bitstream-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/cpu-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/dct-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/deblock-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/mc-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/arm/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/pixel-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/predict-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/arm/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/quant-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/bitstream.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/bitstream.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/cabac.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/cabac.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/common.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/cpu.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/cpu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/dct.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/deblock.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/frame.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/macroblock.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/macroblock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mc.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/dct-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/deblock-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/macros.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/pixel-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/quant-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mvpred.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/oclobj.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/opencl.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/opencl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/opencl/x264-cl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/osdep.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/osdep.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/pixel.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/dct.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/deblock.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/mc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/pixel.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/ppccommon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/predict.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/quant.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/predict.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/quant.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/rectangle.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/rectangle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/set.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/threadpool.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/threadpool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/vlc.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/win32thread.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/win32thread.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/bitstream-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/cabac-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/const-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/cpu-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct-32.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct-64.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/deblock-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/mc-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/mc-a2.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/x86/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/pixel-32.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/pixel-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/predict-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/x86/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/quant-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/sad-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/sad16-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/trellis-64.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/util.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/x86inc.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/x86util.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/jacob_notes.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/analyse.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/analyse.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/cabac.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/cavlc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/encoder.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/lookahead.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/macroblock.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/macroblock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/me.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/me.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/ratecontrol.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/ratecontrol.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/rdo.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/set.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/slicetype-cl.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/slicetype.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="example.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="extras/avisynth_c.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/avxsynth_c.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/cl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/cl_platform.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/getopt.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="extras/getopt.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/intel_dispatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/inttypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/stdint.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="0/common/aarch64">
+        <cTool>
+          <incDir>
+            <pElem>common/aarch64</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/arm">
+        <cTool>
+          <incDir>
+            <pElem>common/arm</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/mips">
+        <cTool>
+          <incDir>
+            <pElem>common/mips</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/ppc">
+        <cTool>
+          <incDir>
+            <pElem>common/ppc</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/x86">
+        <cTool>
+          <incDir>
+            <pElem>common/x86</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/encoder">
+        <cTool>
+          <incDir>
+            <pElem>encoder</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/extras">
+        <cTool>
+          <incDir>
+            <pElem>extras</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/filters/video">
+        <cTool>
+          <incDir>
+            <pElem>filters/video</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/input">
+        <cTool>
+          <incDir>
+            <pElem>input</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/output">
+        <cTool>
+          <incDir>
+            <pElem>output</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/tools">
+        <cTool>
+          <incDir>
+            <pElem>tools</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <item path="filters/filters.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>filters</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="filters/filters.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="filters/video/cache.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/crop.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/depth.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/fix_vfr_pts.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/internal.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/internal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="filters/video/resize.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/select_every.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/source.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/video.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/video.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="input/avs.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/ffms.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/input.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/input.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="input/lavf.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/raw.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/thread.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/timecode.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/y4m.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/flv.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/flv_bytestream.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/flv_bytestream.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="output/matroska.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/matroska_ebml.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/matroska_ebml.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="output/mp4.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/mp4_lsmash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/output.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="output/raw.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="tools/checkasm-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="tools/checkasm-aarch64.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="tools/checkasm-arm.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="tools/checkasm.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="x264.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="x264.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="x264_config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="x264cli.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="x264dll.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </cTool>
+      </item>
+    </conf>
+    <conf name="2_frames" type="0">
+      <toolsSet>
+        <compilerSet>Cygwin|Cygwin</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
+          <executablePath>x264.exe</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand></preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="common/aarch64/asm-offsets.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/aarch64/asm-offsets.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/asm.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/bitstream-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/cabac-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/dct-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/deblock-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/mc-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/aarch64/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/pixel-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/predict-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/aarch64/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/aarch64/quant-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/aarch64/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/asm.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/bitstream-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/cpu-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/dct-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/deblock-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/mc-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/arm/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/pixel-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/predict-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/arm/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/arm/quant-a.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/arm/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/bitstream.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/bitstream.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/cabac.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/cabac.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/common.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/cpu.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/cpu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/dct.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/deblock.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/frame.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/macroblock.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/macroblock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mc.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/dct-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/deblock-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/macros.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/pixel-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mips/quant-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/mips/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/mvpred.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/oclobj.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/opencl.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/opencl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/opencl/x264-cl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/osdep.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/osdep.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/pixel.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/dct.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/deblock.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/mc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/pixel.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/ppccommon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/predict.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/ppc/quant.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/ppc/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/predict.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/quant.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/rectangle.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/rectangle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/set.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/threadpool.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/threadpool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/vlc.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/win32thread.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>common</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="common/win32thread.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/bitstream-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/cabac-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/const-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/cpu-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct-32.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct-64.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/dct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/deblock-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/mc-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/mc-a2.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/mc-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/x86/mc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/pixel-32.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/pixel-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/pixel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/predict-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/predict-c.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/x86/predict.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/quant-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/quant.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/sad-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/sad16-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/trellis-64.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/util.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common/x86/x86inc.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="common/x86/x86util.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/jacob_notes.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/analyse.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/analyse.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/cabac.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/cavlc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/encoder.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/lookahead.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/macroblock.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/macroblock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/me.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/me.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/ratecontrol.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/ratecontrol.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/rdo.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/set.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encoder/slicetype-cl.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="encoder/slicetype.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="example.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="extras/avisynth_c.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/avxsynth_c.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/cl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/cl_platform.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/getopt.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="extras/getopt.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/intel_dispatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/inttypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="extras/stdint.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="0/common/aarch64">
+        <cTool>
+          <incDir>
+            <pElem>common/aarch64</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/arm">
+        <cTool>
+          <incDir>
+            <pElem>common/arm</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/mips">
+        <cTool>
+          <incDir>
+            <pElem>common/mips</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/ppc">
+        <cTool>
+          <incDir>
+            <pElem>common/ppc</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/common/x86">
+        <cTool>
+          <incDir>
+            <pElem>common/x86</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/encoder">
+        <cTool>
+          <incDir>
+            <pElem>encoder</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/extras">
+        <cTool>
+          <incDir>
+            <pElem>extras</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/filters/video">
+        <cTool>
+          <incDir>
+            <pElem>filters/video</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/input">
+        <cTool>
+          <incDir>
+            <pElem>input</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/output">
+        <cTool>
+          <incDir>
+            <pElem>output</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/tools">
+        <cTool>
+          <incDir>
+            <pElem>tools</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <item path="filters/filters.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>filters</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="filters/filters.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="filters/video/cache.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/crop.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/depth.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/fix_vfr_pts.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/internal.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/internal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="filters/video/resize.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/select_every.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/source.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/video.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="filters/video/video.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="input/avs.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/ffms.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/input.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/input.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="input/lavf.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/raw.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/thread.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/timecode.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="input/y4m.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/flv.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/flv_bytestream.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/flv_bytestream.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="output/matroska.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/matroska_ebml.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/matroska_ebml.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="output/mp4.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/mp4_lsmash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="output/output.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="output/raw.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="tools/checkasm-a.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="tools/checkasm-aarch64.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="tools/checkasm-arm.S" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="tools/checkasm.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="x264.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="x264.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="x264_config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="x264cli.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="x264dll.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </cTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
