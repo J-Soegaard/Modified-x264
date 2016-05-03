@@ -10,7 +10,7 @@ x264_mb_predict_mv_16x16( h, 0, i_ref, m.mvp );
 x264_mb_predict_mv_ref16x16( h, 0, i_ref, mvc, &i_mvc );
 x264_me_search_ref( h, &m, mvc, i_mvc, p_halfpel_thresh );
 
-For smaller prediction block sizes the following functions are used:
+For smaller prediction block sizes the following functions are used (e.g. 4x4):
 
 x264_mb_predict_mv( h, 0, idx, 1, m->mvp );
 x264_me_search( h, m, &a->l0.me8x8[i8x8].mv, i_mvc );
