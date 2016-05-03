@@ -858,6 +858,16 @@
           <buildCommand>${MAKE} -f makefile</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
           <executablePath>x264.exe</executablePath>
+          <cTool>
+            <incDir>
+              <pElem>.</pElem>
+              <pElem>common</pElem>
+              <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+            </incDir>
+            <incFile>
+              <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common/common.h</pElem>
+            </incFile>
+          </cTool>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
@@ -866,500 +876,411 @@
       </makefileType>
       <item path="common/aarch64/asm-offsets.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="common/aarch64/asm-offsets.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/aarch64/asm.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/bitstream-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/cabac-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/dct-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/dct.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/aarch64/deblock-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/mc-a.S" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="common/aarch64/mc-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/aarch64/mc.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/aarch64/pixel-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/pixel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/aarch64/predict-a.S" ex="false" tool="4" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/aarch64/predict-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/aarch64/predict.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/aarch64/quant-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/aarch64/quant.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/arm/asm.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/bitstream-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/cpu-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/dct-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/dct.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/arm/deblock-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/mc-a.S" ex="false" tool="4" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/arm/mc-c.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="common/arm/mc.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/arm/pixel-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/pixel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/arm/predict-a.S" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="common/arm/predict-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/arm/predict.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/arm/quant-a.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/arm/quant.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/bitstream.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/bitstream.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/cabac.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/cabac.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/common.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/common.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/cpu.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/cpu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/dct.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/dct.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/deblock.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </item>
       <item path="common/frame.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/frame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/macroblock.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/macroblock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/mc.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </item>
-      <item path="common/mc.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="common/mips/dct-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/mips/dct.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/mips/deblock-c.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="common/mips/macros.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="common/mips/mc-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/mips/mc.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/mips/pixel-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/mips/pixel.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/mips/predict-c.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="common/mips/predict.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="common/mips/quant-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/mips/quant.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/mvpred.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/oclobj.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/opencl.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/opencl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/opencl/x264-cl.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/osdep.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/osdep.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/pixel.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </item>
-      <item path="common/pixel.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="common/ppc/dct.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/ppc/dct.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/ppc/deblock.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="common/ppc/mc.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/ppc/mc.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/ppc/pixel.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="common/ppc/pixel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/ppc/ppccommon.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="common/ppc/predict.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/ppc/predict.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/ppc/quant.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/ppc/quant.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="common/predict.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/predict.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/quant.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/quant.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/rectangle.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/rectangle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/set.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/set.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/threadpool.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="common/threadpool.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="common/vlc.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </item>
       <item path="common/win32thread.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>common</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </item>
-      <item path="common/win32thread.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/bitstream-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/cabac-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/const-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/cpu-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/dct-32.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/dct-64.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/dct-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/dct.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/deblock-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/mc-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/mc-a2.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="common/x86/mc-c.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="common/x86/mc.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/pixel-32.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/pixel-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/pixel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/predict-a.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="common/x86/predict-c.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="common/x86/predict.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/quant-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/quant.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/sad-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/sad16-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/trellis-64.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/util.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="common/x86/x86inc.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="common/x86/x86util.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="config.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="doc/jacob_notes.txt" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="encoder/analyse.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="encoder/analyse.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/cabac.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/cavlc.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/encoder.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/lookahead.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/macroblock.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="encoder/macroblock.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/me.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="encoder/me.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/ratecontrol.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="encoder/ratecontrol.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/rdo.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/set.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="encoder/set.h" ex="false" tool="3" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/slicetype-cl.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="encoder/slicetype.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="example.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem></pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
       </item>
-      <item path="extras/avisynth_c.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="extras/avxsynth_c.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="extras/cl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="extras/cl_platform.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="extras/getopt.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="extras/getopt.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="extras/intel_dispatcher.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="extras/inttypes.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="extras/stdint.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="0/common/aarch64">
         <cTool>
           <incDir>
-            <pElem>common/aarch64</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common/aarch64</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/common/arm">
         <cTool>
           <incDir>
-            <pElem>common/arm</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common/arm</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/common/mips">
         <cTool>
           <incDir>
-            <pElem>common/mips</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common/mips</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/common/ppc">
         <cTool>
           <incDir>
-            <pElem>common/ppc</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common/ppc</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/common/x86">
         <cTool>
           <incDir>
-            <pElem>common/x86</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common/x86</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/common</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/encoder">
         <cTool>
           <incDir>
-            <pElem>encoder</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/encoder</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/extras">
         <cTool>
           <incDir>
-            <pElem>extras</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/extras</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/filters/video">
         <cTool>
           <incDir>
-            <pElem>filters/video</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/filters/video</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/input">
         <cTool>
           <incDir>
-            <pElem>input</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/input</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/output">
         <cTool>
           <incDir>
-            <pElem>output</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/output</pElem>
           </incDir>
         </cTool>
       </folder>
       <folder path="0/tools">
         <cTool>
           <incDir>
-            <pElem>tools</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/tools</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
       </folder>
       <item path="filters/filters.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem>filters</pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264/filters</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="filters/filters.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="filters/video/cache.c" ex="false" tool="0" flavor2="2">
       </item>
@@ -1371,8 +1292,6 @@
       </item>
       <item path="filters/video/internal.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="filters/video/internal.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="filters/video/resize.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="filters/video/select_every.c" ex="false" tool="0" flavor2="2">
@@ -1381,15 +1300,16 @@
       </item>
       <item path="filters/video/video.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="filters/video/video.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="input/avs.c" ex="false" tool="0" flavor2="2">
+        <cTool>
+          <incDir>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
+          </incDir>
+        </cTool>
       </item>
       <item path="input/ffms.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="input/input.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="input/input.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="input/lavf.c" ex="false" tool="0" flavor2="2">
       </item>
@@ -1405,47 +1325,29 @@
       </item>
       <item path="output/flv_bytestream.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="output/flv_bytestream.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="output/matroska.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="output/matroska_ebml.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="output/matroska_ebml.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="output/mp4.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="output/mp4_lsmash.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="output/output.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="output/raw.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="tools/checkasm-a.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="tools/checkasm-aarch64.S" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="tools/checkasm-arm.S" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tools/checkasm.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="x264.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem></pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
-      </item>
-      <item path="x264.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="x264_config.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="x264cli.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="x264dll.c" ex="false" tool="0" flavor2="2">
         <cTool>
           <incDir>
-            <pElem></pElem>
+            <pElem>//dtu-storage/jsog/Documents/GitHub/Modified-x264</pElem>
           </incDir>
         </cTool>
       </item>
