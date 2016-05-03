@@ -23,12 +23,12 @@
  *
  * This program is also available under a commercial proprietary license.
  * For more information, contact us at licensing@x264.com.
- *****************************************************************************/
+ ****************************************************************************/
 
 #include "common.h"
 
-void x264_mb_predict_mv( x264_t *h, int i_list, int idx, int i_width, int16_t mvp[2] )
-{
+ void x264_mb_predict_mv( x264_t *h, int i_list, int idx, int i_width, int16_t mvp[2] )
+ {
     const int i8 = x264_scan8[idx];
     const int i_ref= h->mb.cache.ref[i_list][i8];
     int     i_refa = h->mb.cache.ref[i_list][i8 - 1];
@@ -108,7 +108,7 @@ void x264_mb_predict_mv( x264_t *h, int i_list, int idx, int i_width, int16_t mv
 
     if( i_count > 1 )
     {
-median:
+        median:
         x264_median_mv( mvp, mv_a, mv_b, mv_c );
     }
     else if( i_count == 1 )
@@ -151,7 +151,7 @@ void x264_mb_predict_mv_16x16( x264_t *h, int i_list, int i_ref, int16_t mvp[2] 
 
     if( i_count > 1 )
     {
-median:
+        median:
         x264_median_mv( mvp, mv_a, mv_b, mv_c );
     }
     else if( i_count == 1 )
@@ -223,7 +223,7 @@ static int x264_mb_predict_mv_direct16x16_temporal( x264_t *h )
         {
             int cur_poc = h->fdec->i_poc + h->fdec->i_delta_poc[MB_INTERLACED&h->mb.i_mb_y&1];
             int col_parity = abs(h->fref[1][0]->i_poc + h->fref[1][0]->i_delta_poc[0] - cur_poc)
-                          >= abs(h->fref[1][0]->i_poc + h->fref[1][0]->i_delta_poc[1] - cur_poc);
+            >= abs(h->fref[1][0]->i_poc + h->fref[1][0]->i_delta_poc[1] - cur_poc);
             mb_y = (h->mb.i_mb_y&~1) + col_parity;
             mb_xy = mb_x + h->mb.i_mb_stride * mb_y;
             type_col[0] = type_col[1] = h->fref[1][0]->mb_type[mb_xy];
@@ -242,17 +242,17 @@ static int x264_mb_predict_mv_direct16x16_temporal( x264_t *h )
     /* Don't do any checks other than the ones we have to, based
      * on the size of the colocated partitions.
      * Depends on the enum order: D_8x8, D_16x8, D_8x16, D_16x16 */
-    int max_i8 = (D_16x16 - h->mb.i_partition) + 1;
-    int step = (h->mb.i_partition == D_16x8) + 1;
-    int width = 4 >> ((D_16x16 - h->mb.i_partition)&1);
-    int height = 4 >> ((D_16x16 - h->mb.i_partition)>>1);
-    for( int i8 = 0; i8 < max_i8; i8 += step )
-    {
+     int max_i8 = (D_16x16 - h->mb.i_partition) + 1;
+     int step = (h->mb.i_partition == D_16x8) + 1;
+     int width = 4 >> ((D_16x16 - h->mb.i_partition)&1);
+     int height = 4 >> ((D_16x16 - h->mb.i_partition)>>1);
+     for( int i8 = 0; i8 < max_i8; i8 += step )
+     {
         int x8 = i8&1;
         int y8 = i8>>1;
         int ypart = (SLICE_MBAFF && h->fref[1][0]->field[mb_xy] != MB_INTERLACED) ?
-                    MB_INTERLACED ? y8*6 : 2*(h->mb.i_mb_y&1) + y8 :
-                    3*y8;
+        MB_INTERLACED ? y8*6 : 2*(h->mb.i_mb_y&1) + y8 :
+        3*y8;
 
         if( IS_INTRA( type_col[y8] ) )
         {
@@ -286,15 +286,15 @@ static int x264_mb_predict_mv_direct16x16_temporal( x264_t *h )
             /* FIXME: with B-pyramid + extensive ref list reordering
              *   (not currently used), we would also have to check
              *   l1mv1 like in spatial mode */
-            return 0;
-        }
-    }
+             return 0;
+         }
+     }
 
-    return 1;
-}
+     return 1;
+ }
 
-static ALWAYS_INLINE int x264_mb_predict_mv_direct16x16_spatial( x264_t *h, int b_interlaced )
-{
+ static ALWAYS_INLINE int x264_mb_predict_mv_direct16x16_spatial( x264_t *h, int b_interlaced )
+ {
     int8_t ref[2];
     ALIGNED_ARRAY_8( int16_t, mv,[2],[2] );
     for( int i_list = 0; i_list < 2; i_list++ )
@@ -369,7 +369,7 @@ static ALWAYS_INLINE int x264_mb_predict_mv_direct16x16_spatial( x264_t *h, int 
         {
             int cur_poc = h->fdec->i_poc + h->fdec->i_delta_poc[MB_INTERLACED&h->mb.i_mb_y&1];
             int col_parity = abs(h->fref[1][0]->i_poc + h->fref[1][0]->i_delta_poc[0] - cur_poc)
-                          >= abs(h->fref[1][0]->i_poc + h->fref[1][0]->i_delta_poc[1] - cur_poc);
+            >= abs(h->fref[1][0]->i_poc + h->fref[1][0]->i_delta_poc[1] - cur_poc);
             mb_y = (h->mb.i_mb_y&~1) + col_parity;
             mb_xy = mb_x + h->mb.i_mb_stride * mb_y;
             type_col[0] = type_col[1] = h->fref[1][0]->mb_type[mb_xy];
@@ -383,10 +383,10 @@ static ALWAYS_INLINE int x264_mb_predict_mv_direct16x16_spatial( x264_t *h, int 
     int8_t *l1ref0 = &h->fref[1][0]->ref[0][i_mb_8x8];
     int8_t *l1ref1 = &h->fref[1][0]->ref[1][i_mb_8x8];
     int16_t (*l1mv[2])[2] = { (int16_t (*)[2]) &h->fref[1][0]->mv[0][i_mb_4x4],
-                              (int16_t (*)[2]) &h->fref[1][0]->mv[1][i_mb_4x4] };
+      (int16_t (*)[2]) &h->fref[1][0]->mv[1][i_mb_4x4] };
 
     if( (M16( ref ) & 0x8080) == 0x8080 ) /* if( ref[0] < 0 && ref[1] < 0 ) */
-    {
+      {
         x264_macroblock_cache_ref( h, 0, 0, 4, 4, 0, 0 );
         x264_macroblock_cache_ref( h, 0, 0, 4, 4, 1, 0 );
         return 1;
@@ -401,28 +401,28 @@ static ALWAYS_INLINE int x264_mb_predict_mv_direct16x16_spatial( x264_t *h, int 
                 mv[0][0], mv[0][1], mv[1][0], mv[1][1],
                 h->mb.mv_max_spel[1]);
 #endif
-        return 0;
-    }
+return 0;
+}
 
-    if( !M64( mv ) || (!b_interlaced && IS_INTRA( type_col[0] )) || (ref[0]&&ref[1]) )
-        return 1;
+if( !M64( mv ) || (!b_interlaced && IS_INTRA( type_col[0] )) || (ref[0]&&ref[1]) )
+    return 1;
 
     /* Don't do any checks other than the ones we have to, based
      * on the size of the colocated partitions.
      * Depends on the enum order: D_8x8, D_16x8, D_8x16, D_16x16 */
-    int max_i8 = (D_16x16 - h->mb.i_partition) + 1;
-    int step = (h->mb.i_partition == D_16x8) + 1;
-    int width = 4 >> ((D_16x16 - h->mb.i_partition)&1);
-    int height = 4 >> ((D_16x16 - h->mb.i_partition)>>1);
+     int max_i8 = (D_16x16 - h->mb.i_partition) + 1;
+     int step = (h->mb.i_partition == D_16x8) + 1;
+     int width = 4 >> ((D_16x16 - h->mb.i_partition)&1);
+     int height = 4 >> ((D_16x16 - h->mb.i_partition)>>1);
 
     /* col_zero_flag */
-    for( int i8 = 0; i8 < max_i8; i8 += step )
-    {
+     for( int i8 = 0; i8 < max_i8; i8 += step )
+     {
         const int x8 = i8&1;
         const int y8 = i8>>1;
         int ypart = (b_interlaced && h->fref[1][0]->field[mb_xy] != MB_INTERLACED) ?
-                    MB_INTERLACED ? y8*6 : 2*(h->mb.i_mb_y&1) + y8 :
-                    3*y8;
+        MB_INTERLACED ? y8*6 : 2*(h->mb.i_mb_y&1) + y8 :
+        3*y8;
         int o8 = x8 + (ypart>>1) * h->mb.i_b8_stride;
         int o4 = 3*x8 + ypart * h->mb.i_b4_stride;
 
@@ -519,96 +519,96 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
             h->mb.cache.direct_partition = h->mb.i_partition;
         }
 
-    return b_available;
-}
+        return b_available;
+    }
 
 /* This just improves encoder performance, it's not part of the spec */
-void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[9][2], int *i_mvc )
-{
-    int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
-    int i = 0;
+    void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[9][2], int *i_mvc )
+    {
+        int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
+        int i = 0;
 
 #define SET_MVP(mvp) \
-    { \
-        CP32( mvc[i], mvp ); \
-        i++; \
-    }
+        { \
+            CP32( mvc[i], mvp ); \
+            i++; \
+        }
 
 #define SET_IMVP(xy) \
-    if( xy >= 0 ) \
-    { \
-        int shift = 1 + MB_INTERLACED - h->mb.field[xy]; \
-        int16_t *mvp = h->mb.mvr[i_list][i_ref<<1>>shift][xy]; \
-        mvc[i][0] = mvp[0]; \
-        mvc[i][1] = mvp[1]<<1>>shift; \
-        i++; \
-    }
+        if( xy >= 0 ) \
+            { \
+                int shift = 1 + MB_INTERLACED - h->mb.field[xy]; \
+                int16_t *mvp = h->mb.mvr[i_list][i_ref<<1>>shift][xy]; \
+                mvc[i][0] = mvp[0]; \
+                mvc[i][1] = mvp[1]<<1>>shift; \
+                i++; \
+            }
 
     /* b_direct */
-    if( h->sh.i_type == SLICE_TYPE_B
-        && h->mb.cache.ref[i_list][x264_scan8[12]] == i_ref )
-    {
-        SET_MVP( h->mb.cache.mv[i_list][x264_scan8[12]] );
-    }
-
-    if( i_ref == 0 && h->frames.b_have_lowres )
-    {
-        int idx = i_list ? h->fref[1][0]->i_frame-h->fenc->i_frame-1
-                         : h->fenc->i_frame-h->fref[0][0]->i_frame-1;
-        if( idx <= h->param.i_bframe )
-        {
-            int16_t (*lowres_mv)[2] = h->fenc->lowres_mvs[i_list][idx];
-            if( lowres_mv[0][0] != 0x7fff )
+            if( h->sh.i_type == SLICE_TYPE_B
+                && h->mb.cache.ref[i_list][x264_scan8[12]] == i_ref )
             {
-                M32( mvc[i] ) = (M32( lowres_mv[h->mb.i_mb_xy] )*2)&0xfffeffff;
-                i++;
+                SET_MVP( h->mb.cache.mv[i_list][x264_scan8[12]] );
             }
-        }
-    }
+
+            if( i_ref == 0 && h->frames.b_have_lowres )
+            {
+                int idx = i_list ? h->fref[1][0]->i_frame-h->fenc->i_frame-1
+                : h->fenc->i_frame-h->fref[0][0]->i_frame-1;
+                if( idx <= h->param.i_bframe )
+                {
+                    int16_t (*lowres_mv)[2] = h->fenc->lowres_mvs[i_list][idx];
+                    if( lowres_mv[0][0] != 0x7fff )
+                    {
+                        M32( mvc[i] ) = (M32( lowres_mv[h->mb.i_mb_xy] )*2)&0xfffeffff;
+                        i++;
+                    }
+                }
+            }
 
     /* spatial predictors */
-    if( SLICE_MBAFF )
-    {
-        SET_IMVP( h->mb.i_mb_left_xy[0] );
-        SET_IMVP( h->mb.i_mb_top_xy );
-        SET_IMVP( h->mb.i_mb_topleft_xy );
-        SET_IMVP( h->mb.i_mb_topright_xy );
-    }
-    else
-    {
-        SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
-        SET_MVP( mvr[h->mb.i_mb_top_xy] );
-        SET_MVP( mvr[h->mb.i_mb_topleft_xy] );
-        SET_MVP( mvr[h->mb.i_mb_topright_xy] );
-    }
+            if( SLICE_MBAFF )
+            {
+                SET_IMVP( h->mb.i_mb_left_xy[0] );
+                SET_IMVP( h->mb.i_mb_top_xy );
+                SET_IMVP( h->mb.i_mb_topleft_xy );
+                SET_IMVP( h->mb.i_mb_topright_xy );
+            }
+            else
+            {
+                SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
+                SET_MVP( mvr[h->mb.i_mb_top_xy] );
+                SET_MVP( mvr[h->mb.i_mb_topleft_xy] );
+                SET_MVP( mvr[h->mb.i_mb_topright_xy] );
+            }
 #undef SET_IMVP
 #undef SET_MVP
 
     /* temporal predictors */
-    if( h->fref[0][0]->i_ref[0] > 0 )
-    {
-        x264_frame_t *l0 = h->fref[0][0];
-        int field = h->mb.i_mb_y&1;
-        int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
-        int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
-        refpoc += l0->i_delta_poc[field^(i_ref&1)];
+            if( h->fref[0][0]->i_ref[0] > 0 )
+            {
+                x264_frame_t *l0 = h->fref[0][0];
+                int field = h->mb.i_mb_y&1;
+                int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
+                int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
+                refpoc += l0->i_delta_poc[field^(i_ref&1)];
 
 #define SET_TMVP( dx, dy ) \
-        { \
-            int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
-            int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
-            mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
-            mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
-            i++; \
-        }
+                { \
+                    int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
+                    int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
+                    mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
+                    mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
+                    i++; \
+                }
 
-        SET_TMVP(0,0);
-        if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
-            SET_TMVP(1,0);
-        if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
-            SET_TMVP(0,1);
+                SET_TMVP(0,0);
+                if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
+                    SET_TMVP(1,0);
+                if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
+                    SET_TMVP(0,1);
 #undef SET_TMVP
-    }
+            }
 
-    *i_mvc = i;
-}
+            *i_mvc = i;
+        }

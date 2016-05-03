@@ -49,3 +49,5 @@ common/oclobj.h
 x264_lookahead.clbin
 
 nbproject/
+tags
+*.sublime-*
