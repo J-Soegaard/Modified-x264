@@ -1,0 +1,1 @@
+..\x264 --input-res 864x464 --frames 2 -o "test.264" "test.yuv"

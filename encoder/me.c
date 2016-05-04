@@ -212,7 +212,7 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
     const uint16_t *p_cost_mvy = m->p_cost_mv - m->mvp[1];
     
     // printf("%i ");
-    printf("%i ",h->mb.i_subpel_refine);
+    //printf("%i ",h->mb.i_subpel_refine);
     
     /* Try extra predictors if provided.  If subme >= 3, check subpel predictors,
      * otherwise round them to fullpel. */

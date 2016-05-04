@@ -3178,7 +3178,7 @@ int x264_encoder_invalidate_reference( x264_t *h, int64_t pts )
 
 /****************************************************************************
  * x264_encoder_encode:
- *  XXX: i_poc   : is the poc of the current given picture
+ *  XXX: i_poc   : is the poc (display order?) of the current given picture
  *       i_frame : is the number of the frame being coded
  *  ex:  type frame poc
  *       I      0   2*0

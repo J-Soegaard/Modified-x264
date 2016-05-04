@@ -528,87 +528,85 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
         int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
         int i = 0;
 
-#define SET_MVP(mvp) \
+        #define SET_MVP(mvp) \
         { \
             CP32( mvc[i], mvp ); \
             i++; \
         }
 
-#define SET_IMVP(xy) \
-        if( xy >= 0 ) \
+        #define SET_IMVP(xy) if( xy >= 0 ) \
+        { \
+            int shift = 1 + MB_INTERLACED - h->mb.field[xy]; \
+            int16_t *mvp = h->mb.mvr[i_list][i_ref<<1>>shift][xy]; \
+            mvc[i][0] = mvp[0]; \
+            mvc[i][1] = mvp[1]<<1>>shift; \
+            i++; \
+        }
+
+    /* b_direct */
+        if( h->sh.i_type == SLICE_TYPE_B && h->mb.cache.ref[i_list][x264_scan8[12]] == i_ref )
+        {
+            SET_MVP( h->mb.cache.mv[i_list][x264_scan8[12]] );
+        }
+
+        if( i_ref == 0 && h->frames.b_have_lowres )
+        {
+            int idx = i_list ? h->fref[1][0]->i_frame-h->fenc->i_frame-1
+            : h->fenc->i_frame-h->fref[0][0]->i_frame-1;
+            if( idx <= h->param.i_bframe )
+            {
+                int16_t (*lowres_mv)[2] = h->fenc->lowres_mvs[i_list][idx];
+                if( lowres_mv[0][0] != 0x7fff )
+                {
+                    M32( mvc[i] ) = (M32( lowres_mv[h->mb.i_mb_xy] )*2)&0xfffeffff;
+                    i++;
+                }
+            }
+        }
+
+    /* spatial predictors */
+        if( SLICE_MBAFF )
+        {
+            SET_IMVP( h->mb.i_mb_left_xy[0] );
+            SET_IMVP( h->mb.i_mb_top_xy );
+            SET_IMVP( h->mb.i_mb_topleft_xy );
+            SET_IMVP( h->mb.i_mb_topright_xy );
+        }
+        else
+        {
+            SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
+            SET_MVP( mvr[h->mb.i_mb_top_xy] );
+            SET_MVP( mvr[h->mb.i_mb_topleft_xy] );
+            SET_MVP( mvr[h->mb.i_mb_topright_xy] );
+        }
+        #undef SET_IMVP
+        #undef SET_MVP
+
+    /* temporal predictors */
+        if( h->fref[0][0]->i_ref[0] > 0 )
+        {
+            x264_frame_t *l0 = h->fref[0][0];
+            int field = h->mb.i_mb_y&1;
+            int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
+            int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
+            refpoc += l0->i_delta_poc[field^(i_ref&1)];
+
+            #define SET_TMVP( dx, dy ) \
             { \
-                int shift = 1 + MB_INTERLACED - h->mb.field[xy]; \
-                int16_t *mvp = h->mb.mvr[i_list][i_ref<<1>>shift][xy]; \
-                mvc[i][0] = mvp[0]; \
-                mvc[i][1] = mvp[1]<<1>>shift; \
+                int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
+                int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
+                mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
+                mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
                 i++; \
             }
 
-    /* b_direct */
-            if( h->sh.i_type == SLICE_TYPE_B
-                && h->mb.cache.ref[i_list][x264_scan8[12]] == i_ref )
-            {
-                SET_MVP( h->mb.cache.mv[i_list][x264_scan8[12]] );
-            }
-
-            if( i_ref == 0 && h->frames.b_have_lowres )
-            {
-                int idx = i_list ? h->fref[1][0]->i_frame-h->fenc->i_frame-1
-                : h->fenc->i_frame-h->fref[0][0]->i_frame-1;
-                if( idx <= h->param.i_bframe )
-                {
-                    int16_t (*lowres_mv)[2] = h->fenc->lowres_mvs[i_list][idx];
-                    if( lowres_mv[0][0] != 0x7fff )
-                    {
-                        M32( mvc[i] ) = (M32( lowres_mv[h->mb.i_mb_xy] )*2)&0xfffeffff;
-                        i++;
-                    }
-                }
-            }
-
-    /* spatial predictors */
-            if( SLICE_MBAFF )
-            {
-                SET_IMVP( h->mb.i_mb_left_xy[0] );
-                SET_IMVP( h->mb.i_mb_top_xy );
-                SET_IMVP( h->mb.i_mb_topleft_xy );
-                SET_IMVP( h->mb.i_mb_topright_xy );
-            }
-            else
-            {
-                SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
-                SET_MVP( mvr[h->mb.i_mb_top_xy] );
-                SET_MVP( mvr[h->mb.i_mb_topleft_xy] );
-                SET_MVP( mvr[h->mb.i_mb_topright_xy] );
-            }
-#undef SET_IMVP
-#undef SET_MVP
-
-    /* temporal predictors */
-            if( h->fref[0][0]->i_ref[0] > 0 )
-            {
-                x264_frame_t *l0 = h->fref[0][0];
-                int field = h->mb.i_mb_y&1;
-                int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
-                int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
-                refpoc += l0->i_delta_poc[field^(i_ref&1)];
-
-#define SET_TMVP( dx, dy ) \
-                { \
-                    int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
-                    int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
-                    mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
-                    mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
-                    i++; \
-                }
-
-                SET_TMVP(0,0);
-                if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
-                    SET_TMVP(1,0);
-                if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
-                    SET_TMVP(0,1);
-#undef SET_TMVP
-            }
-
-            *i_mvc = i;
+            SET_TMVP(0,0); // Co-located
+            if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
+                SET_TMVP(1,0); // Right neighbour
+            if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
+                SET_TMVP(0,1); // Bottom neighbour
+            #undef SET_TMVP
         }
+
+        *i_mvc = i;
+    }
