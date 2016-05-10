@@ -1743,7 +1743,7 @@ static int x264_encoder_try_reconfig( x264_t *h, x264_param_t *param, int *rc_re
 {
     *rc_reconfig = 0;
     x264_set_aspect_ratio( h, param, 0 );
-#define COPY(var) h->param.var = param->var
+    #define COPY(var) h->param.var = param->var
     COPY( i_frame_reference ); // but never uses more refs than initially specified
     COPY( i_bframe_bias );
     if( h->param.i_scenecut_threshold )
@@ -3198,10 +3198,12 @@ int     x264_encoder_encode( x264_t *h,
     int i_nal_type, i_nal_ref_idc, i_global_qp;
     int overhead = NALU_OVERHEAD;
 
-#if HAVE_OPENCL
+    printf("Frame=%4d \n",h->i_frame);
+
+    #if HAVE_OPENCL
     if( h->opencl.b_fatal_error )
         return -1;
-#endif
+    #endif
 
     if( h->i_thread_frames > 1 )
     {

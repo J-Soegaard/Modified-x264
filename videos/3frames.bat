@@ -19,6 +19,8 @@
 	--partition none ^
 	--subme 0 ^
 	--weightp 0 ^
+	--verbose ^
+	--threads 1 ^
 test.yuv ^
 -o 3frames.264 ^
 &1>3frames_print.log

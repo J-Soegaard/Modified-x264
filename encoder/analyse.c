@@ -803,6 +803,10 @@ static void x264_mb_analyse_intra_chroma( x264_t *h, x264_mb_analysis_t *a )
 /* FIXME: should we do any sort of merged chroma analysis with 4:4:4? */
 static void x264_mb_analyse_intra( x264_t *h, x264_mb_analysis_t *a, int i_satd_inter )
 {
+    // printf("\n Intra: ");
+    // printf("%i ",h->mb.i_subpel_refine);
+
+
     const unsigned int flags = h->sh.i_type == SLICE_TYPE_I ? h->param.analyse.intra : h->param.analyse.inter;
     pixel *p_src = h->mb.pic.p_fenc[0];
     pixel *p_dst = h->mb.pic.p_fdec[0];

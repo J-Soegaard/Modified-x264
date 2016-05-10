@@ -17,10 +17,16 @@ MOTION ESTIMATION (P-frames) is done by the following functions (using EPZS) for
 	x264_me_search_ref( h, &m, mvc, i_mvc, p_halfpel_thresh );
 		- Calculate best MV candidate from above (SAD) and use it as starting point for ME (defualt: 1-step diamond).
 
-NOTE: No early stopping seems to be defined.
+NOTE: No early stopping seems to be defined for the EPZS part.
 
 
 For smaller prediction block sizes the following functions are used (e.g. 4x4):
 
 	x264_mb_predict_mv( h, 0, idx, 1, m->mvp );
 	x264_me_search( h, m, &a->l0.me8x8[i8x8].mv, i_mvc );
+
+
+ABBREVIATIONS:
+
+SAD: Sum of absolute differences
+SATD: Sum of absolute transformed differences (more complex than SAD)

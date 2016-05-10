@@ -610,8 +610,8 @@ int x264_param_parse( x264_param_t *p, const char *name, const char *value )
     }
     name_was_bool = 0;
 
-#define OPT(STR) else if( !strcmp( name, STR ) )
-#define OPT2(STR0, STR1) else if( !strcmp( name, STR0 ) || !strcmp( name, STR1 ) )
+    #define OPT(STR) else if( !strcmp( name, STR ) )
+    #define OPT2(STR0, STR1) else if( !strcmp( name, STR0 ) || !strcmp( name, STR1 ) )
     if(0);
     OPT("asm")
     {

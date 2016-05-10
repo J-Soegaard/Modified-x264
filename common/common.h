@@ -779,8 +779,8 @@ struct x264_t
         struct
         {
             /* space for p_fenc and p_fdec */
-#define FENC_STRIDE 16
-#define FDEC_STRIDE 32
+            #define FENC_STRIDE 16
+            #define FDEC_STRIDE 32
             ALIGNED_16( pixel fenc_buf[48*FENC_STRIDE] );
             ALIGNED_N( pixel fdec_buf[52*FDEC_STRIDE] );
 
@@ -882,11 +882,11 @@ struct x264_t
         int8_t bipred_weight_buf[2][2][X264_REF_MAX*2][4];
         int8_t (*bipred_weight)[4];
         /* maps fref1[0]'s ref indices into the current list0 */
-#define map_col_to_list0(col) h->mb.map_col_to_list0[(col)+2]
+        #define map_col_to_list0(col) h->mb.map_col_to_list0[(col)+2]
         int8_t  map_col_to_list0[X264_REF_MAX+2];
         int ref_blind_dupe; /* The index of the blind reference frame duplicate. */
         int8_t deblock_ref_table[X264_REF_MAX*2+2];
-#define deblock_ref_table(x) h->mb.deblock_ref_table[(x)+2]
+        #define deblock_ref_table(x) h->mb.deblock_ref_table[(x)+2]
     } mb;
 
     /* rate control encoding only */

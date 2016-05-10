@@ -1520,11 +1520,11 @@ static int parse( int argc, char **argv, x264_param_t *param, cli_opt_t *opt )
             case OPT_OUTPUT_CSP:
                 FAIL_IF_ERROR( parse_enum_value( optarg, output_csp_names, &output_csp ), "Unknown output csp `%s'\n", optarg )
                 // correct the parsed value to the libx264 csp value
-#if X264_CHROMA_FORMAT
-                static const uint8_t output_csp_fix[] = { X264_CHROMA_FORMAT, X264_CSP_RGB };
-#else
-                static const uint8_t output_csp_fix[] = { X264_CSP_I420, X264_CSP_I422, X264_CSP_I444, X264_CSP_RGB };
-#endif
+                #if X264_CHROMA_FORMAT
+                    static const uint8_t output_csp_fix[] = { X264_CHROMA_FORMAT, X264_CSP_RGB };
+                #else
+                    static const uint8_t output_csp_fix[] = { X264_CSP_I420, X264_CSP_I422, X264_CSP_I444, X264_CSP_RGB };
+                #endif
                 param->i_csp = output_csp = output_csp_fix[output_csp];
                 break;
             case OPT_INPUT_RANGE:
@@ -1536,25 +1536,27 @@ static int parse( int argc, char **argv, x264_param_t *param, cli_opt_t *opt )
                 input_opt.output_range = param->vui.b_fullrange += RANGE_AUTO;
                 break;
             default:
-generic_option:
-            {
-                if( long_options_index < 0 )
+                generic_option:
                 {
-                    for( int i = 0; long_options[i].name; i++ )
-                        if( long_options[i].val == c )
-                        {
-                            long_options_index = i;
-                            break;
-                        }
                     if( long_options_index < 0 )
                     {
-                        /* getopt_long already printed an error message */
-                        return -1;
+                        for( int i = 0; long_options[i].name; i++ )
+                            if( long_options[i].val == c )
+                            {
+                                long_options_index = i;
+                                break;
+                            }
+                            if( long_options_index < 0 )
+                            {
+                            /* getopt_long already printed an error message */
+                                return -1;
+                            }
                     }
-                }
 
-                b_error |= x264_param_parse( param, long_options[long_options_index].name, optarg );
-            }
+                    b_error |= x264_param_parse( param, long_options[long_options_index].name, optarg );
+                    // int i = param->analyse.i_subpel_refine;
+                    // printf("%i ",i);
+                }
         }
 
         if( b_error )
@@ -1624,18 +1626,18 @@ generic_option:
     else FAIL_IF_ERROR( !info.vfr && input_opt.timebase, "--timebase is incompatible with cfr input\n" )
 
     /* init threaded input while the information about the input video is unaltered by filtering */
-#if HAVE_THREAD
-    if( info.thread_safe && (b_thread_input || param->i_threads > 1
-        || (param->i_threads == X264_THREADS_AUTO && x264_cpu_num_processors() > 1)) )
-    {
-        if( thread_input.open_file( NULL, &opt->hin, &info, NULL ) )
+    #if HAVE_THREAD
+        if( info.thread_safe && (b_thread_input || param->i_threads > 1
+            || (param->i_threads == X264_THREADS_AUTO && x264_cpu_num_processors() > 1)) )
         {
-            fprintf( stderr, "x264 [error]: threaded input failed\n" );
-            return -1;
+            if( thread_input.open_file( NULL, &opt->hin, &info, NULL ) )
+            {
+                fprintf( stderr, "x264 [error]: threaded input failed\n" );
+                return -1;
+            }
+            cli_input = thread_input;
         }
-        cli_input = thread_input;
-    }
-#endif
+    #endif
 
     /* override detected values by those specified by the user */
     if( param->vui.i_sar_width > 0 && param->vui.i_sar_height > 0 )
@@ -1700,15 +1702,15 @@ generic_option:
 
     if( !b_user_interlaced && info.interlaced )
     {
-#if HAVE_INTERLACED
+    #if HAVE_INTERLACED
         x264_cli_log( "x264", X264_LOG_WARNING, "input appears to be interlaced, enabling %cff interlaced mode.\n"
-                      "                If you want otherwise, use --no-interlaced or --%cff\n",
-                      info.tff ? 't' : 'b', info.tff ? 'b' : 't' );
+          "                If you want otherwise, use --no-interlaced or --%cff\n",
+          info.tff ? 't' : 'b', info.tff ? 'b' : 't' );
         param->b_interlaced = 1;
         param->b_tff = !!info.tff;
-#else
+    #else
         x264_cli_log( "x264", X264_LOG_WARNING, "input appears to be interlaced, but not compiled with interlaced support\n" );
-#endif
+    #endif
     }
     /* if the user never specified the output range and the input is now rgb, default it to pc */
     int csp = param->i_csp & X264_CSP_MASK;
@@ -1991,7 +1993,7 @@ static int encode( x264_param_t *param, cli_opt_t *opt )
         if( opt->b_progress && i_frame_output )
             i_previous = print_status( i_start, i_previous, i_frame_output, param->i_frame_total, i_file, param, 2 * last_dts - prev_dts - first_dts );
     }
-fail:
+    fail:
     if( pts_warning_cnt >= MAX_PTS_WARNING && cli_log_level < X264_LOG_DEBUG )
         x264_cli_log( "x264", X264_LOG_WARNING, "%d suppressed nonmonotonic pts warnings\n", pts_warning_cnt-MAX_PTS_WARNING );
 
