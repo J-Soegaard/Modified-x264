@@ -1,6 +1,6 @@
 ..\x264 ^
 	--input-res 1152x528 ^
-	--frames 3  ^
+	--frames 100  ^
 	--keyint 301 ^
 	--bitrate 10000 ^
 	--psnr ^
@@ -23,5 +23,5 @@
 	--verbose ^
 	--threads 1 ^
 test.yuv ^
--o 3frames.264 ^
-&1>3frames_print.log
+-o 100frames.264 ^
+&1>100frames_print.log

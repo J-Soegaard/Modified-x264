@@ -2639,10 +2639,10 @@ static intptr_t x264_slice_write( x264_t *h )
     int orig_last_mb = h->sh.i_last_mb;
     int thread_last_mb = h->i_threadslice_end * h->mb.i_mb_width - 1;
     uint8_t *last_emu_check;
-#define BS_BAK_SLICE_MAX_SIZE 0
-#define BS_BAK_CAVLC_OVERFLOW 1
-#define BS_BAK_SLICE_MIN_MBS  2
-#define BS_BAK_ROW_VBV        3
+    #define BS_BAK_SLICE_MAX_SIZE 0
+    #define BS_BAK_CAVLC_OVERFLOW 1
+    #define BS_BAK_SLICE_MIN_MBS  2
+    #define BS_BAK_ROW_VBV        3
     x264_bs_bak_t bs_bak[4];
     b_deblock &= b_hpel || h->param.b_full_recon || h->param.psz_dump_yuv;
     bs_realign( &h->out.bs );
@@ -2733,7 +2733,7 @@ static intptr_t x264_slice_write( x264_t *h )
         x264_macroblock_analyse( h );
 
         /* encode this macroblock -> be careful it can change the mb type to P_SKIP if needed */
-reencode:
+        reencode:
         x264_macroblock_encode( h );
 
         if( h->param.b_cabac )
@@ -3198,7 +3198,7 @@ int     x264_encoder_encode( x264_t *h,
     int i_nal_type, i_nal_ref_idc, i_global_qp;
     int overhead = NALU_OVERHEAD;
 
-    printf("Frame=%4d \n",h->i_frame);
+    printf("\n \n Frame=%4d \n",h->i_frame+1);
 
     #if HAVE_OPENCL
     if( h->opencl.b_fatal_error )

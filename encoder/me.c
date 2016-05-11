@@ -212,8 +212,8 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
     const uint16_t *p_cost_mvx = m->p_cost_mv - m->mvp[0];
     const uint16_t *p_cost_mvy = m->p_cost_mv - m->mvp[1];
     
-    printf("\n MB %3i x %3i: ",h->mb.i_mb_y,h->mb.i_mb_x);
-    printf("%i ",h->mb.i_subpel_refine);
+    printf("\n MB %3i x %3i: ",h->mb.i_mb_x,h->mb.i_mb_y); // JSOG: Print MB number
+    // printf("%i ",h->mb.i_subpel_refine);
     
     /* Try extra predictors if provided.  If subme >= 3, check subpel predictors,
      * otherwise round them to fullpel. */
@@ -799,11 +799,12 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
         break;
     }
     
-    /* -> qpel mv */
-    uint32_t bmv = pack16to32_mask(bmx,bmy);
-    uint32_t bmv_spel = SPELx2(bmv);
+    /* -> qpel mv */   
+    copy_mvs: 
     if( h->mb.i_subpel_refine < 3 )
     {
+        uint32_t bmv = pack16to32_mask(bmx,bmy);
+        uint32_t bmv_spel = SPELx2(bmv);
         m->cost_mv = p_cost_mvx[bmx<<2] + p_cost_mvy[bmy<<2];
         m->cost = bcost;
         /* compute the real cost */
@@ -813,17 +814,19 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
     }
     else
     {
+        uint32_t bmv = pack16to32_mask(bmx,bmy);
+        uint32_t bmv_spel = SPELx2(bmv);
         M32(m->mv) = bpred_cost < bcost ? bpred_mv : bmv_spel;
         m->cost = X264_MIN( bpred_cost, bcost );
     }
     
-    /* subpel refine */  // JSOG: No subpel refine
-    // if( h->mb.i_subpel_refine >= 2 )
-    // {
-    //     int hpel = subpel_iterations[h->mb.i_subpel_refine][2];
-    //     int qpel = subpel_iterations[h->mb.i_subpel_refine][3];
-    //     refine_subpel( h, m, hpel, qpel, p_halfpel_thresh, 0 );
-    // }
+    /* subpel refine */
+    if( h->mb.i_subpel_refine >= 2 )
+    {
+        int hpel = subpel_iterations[h->mb.i_subpel_refine][2];
+        int qpel = subpel_iterations[h->mb.i_subpel_refine][3];
+        refine_subpel( h, m, hpel, qpel, p_halfpel_thresh, 0 );
+    }
 }
 #undef COST_MV
 

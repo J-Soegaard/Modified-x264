@@ -557,22 +557,22 @@ static void x264_slicetype_mb_cost( x264_t *h, x264_mb_analysis_t *a,
         h->mb.mv_max_spel[1] = 4*( h->mb.mv_limit_fpel[1][1] + 8 );
     }
 
-#define LOAD_HPELS_LUMA(dst, src) \
+    #define LOAD_HPELS_LUMA(dst, src) \
     { \
         (dst)[0] = &(src)[0][i_pel_offset]; \
         (dst)[1] = &(src)[1][i_pel_offset]; \
         (dst)[2] = &(src)[2][i_pel_offset]; \
         (dst)[3] = &(src)[3][i_pel_offset]; \
     }
-#define LOAD_WPELS_LUMA(dst,src) \
+    #define LOAD_WPELS_LUMA(dst,src) \
     (dst) = &(src)[i_pel_offset];
 
-#define CLIP_MV( mv ) \
+    #define CLIP_MV( mv ) \
     { \
         mv[0] = x264_clip3( mv[0], h->mb.mv_min_spel[0], h->mb.mv_max_spel[0] ); \
         mv[1] = x264_clip3( mv[1], h->mb.mv_min_spel[1], h->mb.mv_max_spel[1] ); \
     }
-#define TRY_BIDIR( mv0, mv1, penalty ) \
+    #define TRY_BIDIR( mv0, mv1, penalty ) \
     { \
         int i_cost; \
         if( h->param.analyse.i_subpel_refine <= 1 ) \
@@ -658,7 +658,7 @@ static void x264_slicetype_mb_cost( x264_t *h, x264_mb_analysis_t *a,
             /* Reverse-order MV prediction. */
             M32( mvc[0] ) = 0;
             M32( mvc[2] ) = 0;
-#define MVC(mv) { CP32( mvc[i_mvc], mv ); i_mvc++; }
+            #define MVC(mv) { CP32( mvc[i_mvc], mv ); i_mvc++; }
             if( i_mb_x < h->mb.i_mb_width - 1 )
                 MVC( fenc_mv[1] );
             if( i_mb_y < h->i_threadslice_end - 1 )
@@ -669,7 +669,7 @@ static void x264_slicetype_mb_cost( x264_t *h, x264_mb_analysis_t *a,
                 if( i_mb_x < h->mb.i_mb_width - 1 )
                     MVC( fenc_mv[i_mb_stride+1] );
             }
-#undef MVC
+            #undef MVC
             if( i_mvc <= 1 )
                 CP32( m[l].mvp, mvc[0] );
             else
@@ -677,22 +677,23 @@ static void x264_slicetype_mb_cost( x264_t *h, x264_mb_analysis_t *a,
 
             /* Fast skip for cases of near-zero residual.  Shortcut: don't bother except in the mv0 case,
              * since anything else is likely to have enough residual to not trigger the skip. */
-            if( !M32( m[l].mvp ) )
+            if( 1 ) // !M32( m[l].mvp ) )  JSOG: Always skip motion estimation here
             {
                 m[l].cost = h->pixf.mbcmp[PIXEL_8x8]( m[l].p_fenc[0], FENC_STRIDE, m[l].p_fref[0], m[l].i_stride[0] );
-                if( m[l].cost < 64 )
+                if( 1 ) // m[l].cost < 64 ) JSOG: Always skip motion estimation here
                 {
                     M32( m[l].mv ) = 0;
                     goto skip_motionest;
                 }
             }
 
+
             x264_me_search( h, &m[l], mvc, i_mvc );
             m[l].cost -= a->p_cost_mv[0]; // remove mvcost from skip mbs
             if( M32( m[l].mv ) )
                 m[l].cost += 5 * a->i_lambda;
 
-skip_motionest:
+            skip_motionest:
             CP32( fenc_mvs[l], m[l].mv );
             *fenc_costs[l] = m[l].cost;
         }
@@ -707,7 +708,7 @@ skip_motionest:
     if( b_bidir && ( M32( m[0].mv ) || M32( m[1].mv ) ) )
         TRY_BIDIR( m[0].mv, m[1].mv, 5 );
 
-lowres_intra_mb:
+    lowres_intra_mb:
     if( !fenc->b_intra_calculated )
     {
         ALIGNED_ARRAY_16( pixel, edge,[36] );
@@ -871,28 +872,28 @@ static int x264_slicetype_frame_cost( x264_t *h, x264_mb_analysis_t *a,
         output_inter[0] = h->scratch_buffer2;
         output_intra[0] = output_inter[0] + output_buf_size;
 
-#if HAVE_OPENCL
-        if( h->param.b_opencl )
-        {
-            x264_opencl_lowres_init(h, fenc, a->i_lambda );
-            if( do_search[0] )
+        #if HAVE_OPENCL
+            if( h->param.b_opencl )
             {
-                x264_opencl_lowres_init( h, frames[p0], a->i_lambda );
-                x264_opencl_motionsearch( h, frames, b, p0, 0, a->i_lambda, w );
-            }
-            if( do_search[1] )
-            {
-                x264_opencl_lowres_init( h, frames[p1], a->i_lambda );
-                x264_opencl_motionsearch( h, frames, b, p1, 1, a->i_lambda, NULL );
-            }
-            if( b != p0 )
-                x264_opencl_finalize_cost( h, a->i_lambda, frames, p0, p1, b, dist_scale_factor );
-            x264_opencl_flush( h );
+                x264_opencl_lowres_init(h, fenc, a->i_lambda );
+                if( do_search[0] )
+                {
+                    x264_opencl_lowres_init( h, frames[p0], a->i_lambda );
+                    x264_opencl_motionsearch( h, frames, b, p0, 0, a->i_lambda, w );
+                }
+                if( do_search[1] )
+                {
+                    x264_opencl_lowres_init( h, frames[p1], a->i_lambda );
+                    x264_opencl_motionsearch( h, frames, b, p1, 1, a->i_lambda, NULL );
+                }
+                if( b != p0 )
+                    x264_opencl_finalize_cost( h, a->i_lambda, frames, p0, p1, b, dist_scale_factor );
+                x264_opencl_flush( h );
 
-            i_score = fenc->i_cost_est[b-p0][p1-b];
-        }
-        else
-#endif
+                i_score = fenc->i_cost_est[b-p0][p1-b];
+            }
+            else
+        #endif
         {
             if( h->param.i_lookahead_threads > 1 )
             {

@@ -1384,7 +1384,7 @@ static void x264_mb_analyse_inter_p16x16( x264_t *h, x264_mb_analysis_t *a )
 {
     x264_me_t m;
     int i_mvc;
-    ALIGNED_4( int16_t mvc[8][2] );
+    ALIGNED_4( int16_t mvc[10][2] );
     int i_halfpel_thresh = INT_MAX;
     int *p_halfpel_thresh = (a->b_early_terminate && h->mb.pic.i_fref[0]>1) ? &i_halfpel_thresh : NULL;
 
@@ -2022,7 +2022,7 @@ static void x264_mb_analyse_inter_b16x16( x264_t *h, x264_mb_analysis_t *a )
     pixel *src0, *src1;
     intptr_t stride0 = 16, stride1 = 16;
     int i_ref, i_mvc;
-    ALIGNED_4( int16_t mvc[9][2] );
+    ALIGNED_4( int16_t mvc[10][2] );
     int try_skip = a->b_try_skip;
     int list1_skipped = 0;
     int i_halfpel_thresh[2] = {INT_MAX, INT_MAX};
@@ -3061,7 +3061,7 @@ void x264_macroblock_analyse( x264_t *h )
     /*--------------------------- Do the analysis ---------------------------*/
     if( h->sh.i_type == SLICE_TYPE_I )
     {
-intra_analysis:
+        intra_analysis:
         if( analysis.i_mbrd )
             x264_mb_init_fenc_cache( h, analysis.i_mbrd >= 2 );
         x264_mb_analyse_intra( h, &analysis, COST_MAX );
@@ -3149,7 +3149,7 @@ intra_analysis:
             h->mb.i_type = P_SKIP;
             h->mb.i_partition = D_16x16;
             assert( h->mb.cache.pskip_mv[1] <= h->mb.mv_max_spel[1] || h->i_thread_frames == 1 );
-skip_analysis:
+            skip_analysis:
             /* Set up MVs for future predictors */
             for( int i = 0; i < h->mb.pic.i_fref[0]; i++ )
                 M32( h->mb.mvr[0][i][h->mb.i_mb_xy] ) = 0;
