@@ -506,6 +506,7 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
 
     /* cache ref & mv */
     if( b_available )
+    {
         for( int l = 0; l < 2; l++ )
         {
             CP32( h->mb.cache.direct_mv[l][0], h->mb.cache.mv[l][x264_scan8[ 0]] );
@@ -518,51 +519,52 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
             h->mb.cache.direct_ref[l][3] = h->mb.cache.ref[l][x264_scan8[12]];
             h->mb.cache.direct_partition = h->mb.i_partition;
         }
-
-        return b_available;
     }
 
+    return b_available;
+}
+
 /* This just improves encoder performance, it's not part of the spec */
-    void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[10][2], int *i_mvc )
-    {
-        int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
-        int i = 0;
+void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[10][2], int *i_mvc )
+{
+    int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
+    int i,b,c = 0; // Counter for set B and C
 
-        #define SET_MVP(mvp) \
-        { \
-            CP32( mvc[i], mvp ); \
-            i++; \
-        }
+    #define SET_MVP(mvp) \
+    { \
+        CP32( mvc[i], mvp ); \
+        i++; \
+    }
 
-        #define SET_IMVP(xy) if( xy >= 0 ) \
-        { \
-            int shift = 1 + MB_INTERLACED - h->mb.field[xy]; \
-            int16_t *mvp = h->mb.mvr[i_list][i_ref<<1>>shift][xy]; \
-            mvc[i][0] = mvp[0]; \
-            mvc[i][1] = mvp[1]<<1>>shift; \
-            i++; \
-        }
+    #define SET_IMVP(xy) if( xy >= 0 ) \
+    { \
+        int shift = 1 + MB_INTERLACED - h->mb.field[xy]; \
+        int16_t *mvp = h->mb.mvr[i_list][i_ref<<1>>shift][xy]; \
+        mvc[i][0] = mvp[0]; \
+        mvc[i][1] = mvp[1]<<1>>shift; \
+        i++; \
+    }
 
     /* b_direct */
-        if( h->sh.i_type == SLICE_TYPE_B && h->mb.cache.ref[i_list][x264_scan8[12]] == i_ref )
-        {
-            SET_MVP( h->mb.cache.mv[i_list][x264_scan8[12]] );
-        }
+    if( h->sh.i_type == SLICE_TYPE_B && h->mb.cache.ref[i_list][x264_scan8[12]] == i_ref )
+    {
+        SET_MVP( h->mb.cache.mv[i_list][x264_scan8[12]] );
+    }
 
-        if( i_ref == 0 && h->frames.b_have_lowres )
+    if( i_ref == 0 && h->frames.b_have_lowres )
+    {
+        int idx = i_list ? h->fref[1][0]->i_frame-h->fenc->i_frame-1
+        : h->fenc->i_frame-h->fref[0][0]->i_frame-1;
+        if( idx <= h->param.i_bframe )
         {
-            int idx = i_list ? h->fref[1][0]->i_frame-h->fenc->i_frame-1
-            : h->fenc->i_frame-h->fref[0][0]->i_frame-1;
-            if( idx <= h->param.i_bframe )
+            int16_t (*lowres_mv)[2] = h->fenc->lowres_mvs[i_list][idx];
+            if( lowres_mv[0][0] != 0x7fff )
             {
-                int16_t (*lowres_mv)[2] = h->fenc->lowres_mvs[i_list][idx];
-                if( lowres_mv[0][0] != 0x7fff )
-                {
-                    M32( mvc[i] ) = (M32( lowres_mv[h->mb.i_mb_xy] )*2)&0xfffeffff;
-                    i++;
-                }
+                M32( mvc[i] ) = (M32( lowres_mv[h->mb.i_mb_xy] )*2)&0xfffeffff;
+                i++;
             }
         }
+    }
 
     // /* spatial predictors */
     //     if( SLICE_MBAFF )
@@ -608,7 +610,25 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
     //         #undef SET_TMVP
     //     }
 
-        // JSOG: EPZS IMPLEMENTATION START
+    // JSOG: EPZS IMPLEMENTATION START
+
+    /* EPZS Set B */
+    mvc[i][0] = 0;
+    mvc[i][1] = 0; // (0,0) MV
+    i++;
+    SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );  // Spatial left
+    SET_MVP( mvr[h->mb.i_mb_top_xy] );      // Spatial top
+    SET_MVP( mvr[h->mb.i_mb_topright_xy] ); // Spatial top-right
+    b += 4;
+    #undef SET_IMVP
+    #undef SET_MVP
+    if( h->fref[0][0]->i_ref[0] > 0 )
+    {
+        x264_frame_t *l0 = h->fref[0][0];
+        int field = h->mb.i_mb_y&1;
+        int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
+        int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
+        refpoc += l0->i_delta_poc[field^(i_ref&1)];
 
         #define SET_TMVP( dx, dy ) \
         { \
@@ -618,40 +638,37 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
             mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
             i++; \
         }
+        SET_TMVP(0,0);                          // Co-located at t-1 (Last of set B)
+        b++;
 
-        /* EPZS Set B */
-        mvc[i][0] = 0;
-        mvc[i][1] = 0;
-        i++;
-        SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
-        SET_MVP( mvr[h->mb.i_mb_top_xy] );
-        SET_MVP( mvr[h->mb.i_mb_topright_xy] );
-
-
-        /* EPZS Set C */
-        if( h->fref[0][0]->i_ref[0] > 0 )
+        /* EPZS Set C */ // Without "accelerated" MV predictor
+        if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
         {
-            x264_frame_t *l0 = h->fref[0][0];
-            int field = h->mb.i_mb_y&1;
-            int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
-            int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
-            refpoc += l0->i_delta_poc[field^(i_ref&1)];
-
-
-
-            SET_TMVP(0,0); // Co-located
-            if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
-                SET_TMVP(1,0); // Right neighbour
-            if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
-                SET_TMVP(0,1); // Bottom neighbour
-            
+            SET_TMVP(1,0); // Right neighbour at t-1
+            c++;
         }
-        
-        #undef SET_IMVP
-        #undef SET_MVP
-        #undef SET_TMVP
+        if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
+        {
+            SET_TMVP(0,1); // Bottom neighbour at t-1
+            c++;
+        }
+        if( h->mb.i_mb_x > 0 )
+        {
+            SET_TMVP(-1,0); // Left neighbour at t-1
+            c++;
+        }
+        if( h->mb.i_mb_y > 0 )
+        {
+            SET_TMVP(0,-1); // Top neighbour at t-1
+            c++;
+        }
 
-        // JSOG: EPZS IMPLEMENTATION END
+        #undef SET_TMVP        
+    }   
 
-        *i_mvc = i;
-    }
+    *i_mvc = i;
+
+    // JSOG: EPZS IMPLEMENTATION END
+
+}
+
