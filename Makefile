@@ -17,8 +17,8 @@ SRCS = common/mc.c common/predict.c common/pixel.c common/macroblock.c \
        common/frame.c common/dct.c common/cpu.c common/cabac.c \
        common/common.c common/osdep.c common/rectangle.c \
        common/set.c common/quant.c common/deblock.c common/vlc.c \
-       common/mvpred.c common/bitstream.c \
-       encoder/analyse.c encoder/me.c encoder/ratecontrol.c \
+       common/mvpred.c common/mvpred_new.c common/bitstream.c \
+       encoder/analyse.c encoder/me.c encoder/me_new.c encoder/ratecontrol.c \
        encoder/set.c encoder/macroblock.c encoder/cabac.c \
        encoder/cavlc.c encoder/encoder.c encoder/lookahead.c
 

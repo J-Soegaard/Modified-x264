@@ -344,6 +344,8 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed );
  *      uses all neighbors, even those that didn't end up using this ref.
  *      h->mb. need only valid values from other blocks */
 void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[8][2], int *i_mvc );
+// As above but with EPZS
+void x264_mb_predict_mv_ref16x16_EPZS( x264_t *h, int i_list, int i_ref, int16_t mvc[8][2], int *i_mvc, int *b_mvc );
 
 void x264_mb_mc( x264_t *h );
 void x264_mb_mc_8x8( x264_t *h, int i8 );

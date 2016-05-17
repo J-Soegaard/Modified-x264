@@ -56,6 +56,8 @@ typedef struct
 } ALIGNED_16( x264_me_t );
 
 void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, int *p_fullpel_thresh );
+// As above but with custom EPZS
+void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, int b_mvc, int *p_fullpel_thresh );
 #define x264_me_search( h, m, mvc, i_mvc )\
     x264_me_search_ref( h, m, mvc, i_mvc, NULL )
 

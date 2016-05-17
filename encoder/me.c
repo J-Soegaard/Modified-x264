@@ -295,37 +295,6 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
         bcost = h->pixf.fpelcmp[i_pixel]( p_fenc, FENC_STRIDE, &p_fref_w[bmy*stride+bmx], stride );
         printf("%i ",bw*bh); // JSOG: Search Positions (SP)
         
-        // if( i_mvc > 0 )
-        // {
-        //     /* Clip MV candidates and eliminate those equal to zero and pmv. */
-        //     int valid_mvcs = x264_predictor_roundclip( mvc_temp+2, mvc, i_mvc, h->mb.mv_limit_fpel, pmv );
-        //     if( valid_mvcs > 0 )
-        //     {
-        //         int i = 1, cost;
-        //         M32( mvc_temp[1] ) = pmv;
-        //         bcost <<= 4;
-        //         do
-        //         {
-        //             int mx = mvc_temp[i+1][0];
-        //             int my = mvc_temp[i+1][1];
-        //             cost = h->pixf.fpelcmp[i_pixel]( p_fenc, FENC_STRIDE, &p_fref_w[my*stride+mx], stride ) + BITS_MVD( mx, my );
-        //             printf("%i ",bw*bh); // JSOG: Search Positions (SP)
-        //             COPY1_IF_LT( bcost, (cost << 4) + i );
-        //         } while( ++i <= valid_mvcs );
-        //         bmx = mvc_temp[(bcost&15)+1][0];
-        //         bmy = mvc_temp[(bcost&15)+1][1];
-        //         bcost >>= 4;
-        //     }
-        // }
-        
-        // /* Same as above, except the condition is simpler. */
-        // if( pmv ){
-        //     COST_MV( 0, 0 );
-        //     printf("%i ",bw*bh); // JSOG: Search Positions (SP)
-        // } 
-
-        // JSOG: EPZS IMPLEMENTATION START
-
         if( i_mvc > 0 )
         {
             /* Clip MV candidates and eliminate those equal to zero and pmv. */
@@ -355,7 +324,7 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
             printf("%i ",bw*bh); // JSOG: Search Positions (SP)
         } 
 
-        // JSOG: EPZS IMPLEMENTATION START
+
     }
     
     switch( h->mb.i_me_method )
@@ -833,7 +802,6 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
     }
     
     /* -> qpel mv */   
-    copy_mvs: 
     if( h->mb.i_subpel_refine < 3 )
     {
         uint32_t bmv = pack16to32_mask(bmx,bmy);

@@ -528,7 +528,7 @@ int x264_mb_predict_mv_direct16x16( x264_t *h, int *b_changed )
 void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[10][2], int *i_mvc )
 {
     int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
-    int i,b,c = 0; // Counter for set B and C
+    int i = 0;
 
     #define SET_MVP(mvp) \
     { \
@@ -566,109 +566,53 @@ void x264_mb_predict_mv_ref16x16( x264_t *h, int i_list, int i_ref, int16_t mvc[
         }
     }
 
-    // /* spatial predictors */
-    //     if( SLICE_MBAFF )
-    //     {
-    //         SET_IMVP( h->mb.i_mb_left_xy[0] );
-    //         SET_IMVP( h->mb.i_mb_top_xy );
-    //         SET_IMVP( h->mb.i_mb_topleft_xy );
-    //         SET_IMVP( h->mb.i_mb_topright_xy );
-    //     }
-    //     else
-    //     {
-    //         SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
-    //         SET_MVP( mvr[h->mb.i_mb_top_xy] );
-    //         SET_MVP( mvr[h->mb.i_mb_topleft_xy] );
-    //         SET_MVP( mvr[h->mb.i_mb_topright_xy] );
-    //     }
-    //     #undef SET_IMVP
-    //     #undef SET_MVP
-
-    // /* temporal predictors */
-    //     if( h->fref[0][0]->i_ref[0] > 0 )
-    //     {
-    //         x264_frame_t *l0 = h->fref[0][0];
-    //         int field = h->mb.i_mb_y&1;
-    //         int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
-    //         int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
-    //         refpoc += l0->i_delta_poc[field^(i_ref&1)];
-
-    //         #define SET_TMVP( dx, dy ) \
-    //         { \
-    //             int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
-    //             int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
-    //             mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
-    //             mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
-    //             i++; \
-    //         }
-
-    //         SET_TMVP(0,0); // Co-located
-    //         if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
-    //             SET_TMVP(1,0); // Right neighbour
-    //         if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
-    //             SET_TMVP(0,1); // Bottom neighbour
-    //         #undef SET_TMVP
-    //     }
-
-    // JSOG: EPZS IMPLEMENTATION START
-
-    /* EPZS Set B */
-    mvc[i][0] = 0;
-    mvc[i][1] = 0; // (0,0) MV
-    i++;
-    SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );  // Spatial left
-    SET_MVP( mvr[h->mb.i_mb_top_xy] );      // Spatial top
-    SET_MVP( mvr[h->mb.i_mb_topright_xy] ); // Spatial top-right
-    b += 4;
-    #undef SET_IMVP
-    #undef SET_MVP
-    if( h->fref[0][0]->i_ref[0] > 0 )
-    {
-        x264_frame_t *l0 = h->fref[0][0];
-        int field = h->mb.i_mb_y&1;
-        int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
-        int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
-        refpoc += l0->i_delta_poc[field^(i_ref&1)];
-
-        #define SET_TMVP( dx, dy ) \
-        { \
-            int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
-            int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
-            mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
-            mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
-            i++; \
-        }
-        SET_TMVP(0,0);                          // Co-located at t-1 (Last of set B)
-        b++;
-
-        /* EPZS Set C */ // Without "accelerated" MV predictor
-        if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
+    /* spatial predictors */
+        if( SLICE_MBAFF )
         {
-            SET_TMVP(1,0); // Right neighbour at t-1
-            c++;
+            SET_IMVP( h->mb.i_mb_left_xy[0] );
+            SET_IMVP( h->mb.i_mb_top_xy );
+            SET_IMVP( h->mb.i_mb_topleft_xy );
+            SET_IMVP( h->mb.i_mb_topright_xy );
         }
-        if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
+        else
         {
-            SET_TMVP(0,1); // Bottom neighbour at t-1
-            c++;
+            SET_MVP( mvr[h->mb.i_mb_left_xy[0]] );
+            SET_MVP( mvr[h->mb.i_mb_top_xy] );
+            SET_MVP( mvr[h->mb.i_mb_topleft_xy] );
+            SET_MVP( mvr[h->mb.i_mb_topright_xy] );
         }
-        if( h->mb.i_mb_x > 0 )
+        #undef SET_IMVP
+        #undef SET_MVP
+
+    /* temporal predictors */
+        if( h->fref[0][0]->i_ref[0] > 0 )
         {
-            SET_TMVP(-1,0); // Left neighbour at t-1
-            c++;
-        }
-        if( h->mb.i_mb_y > 0 )
-        {
-            SET_TMVP(0,-1); // Top neighbour at t-1
-            c++;
+            x264_frame_t *l0 = h->fref[0][0];
+            int field = h->mb.i_mb_y&1;
+            int curpoc = h->fdec->i_poc + h->fdec->i_delta_poc[field];
+            int refpoc = h->fref[i_list][i_ref>>SLICE_MBAFF]->i_poc;
+            refpoc += l0->i_delta_poc[field^(i_ref&1)];
+
+            #define SET_TMVP( dx, dy ) \
+            { \
+                int mb_index = h->mb.i_mb_xy + dx + dy*h->mb.i_mb_stride; \
+                int scale = (curpoc - refpoc) * l0->inv_ref_poc[MB_INTERLACED&field]; \
+                mvc[i][0] = (l0->mv16x16[mb_index][0]*scale + 128) >> 8; \
+                mvc[i][1] = (l0->mv16x16[mb_index][1]*scale + 128) >> 8; \
+                i++; \
+            }
+
+            SET_TMVP(0,0); // Co-located
+            if( h->mb.i_mb_x < h->mb.i_mb_width-1 )
+                SET_TMVP(1,0); // Right neighbour
+            if( h->mb.i_mb_y < h->mb.i_mb_height-1 )
+                SET_TMVP(0,1); // Bottom neighbour
+            #undef SET_TMVP
         }
 
-        #undef SET_TMVP        
-    }   
 
     *i_mvc = i;
 
-    // JSOG: EPZS IMPLEMENTATION END
 
 }
 

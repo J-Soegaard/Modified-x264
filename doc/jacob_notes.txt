@@ -33,7 +33,7 @@ SAD: Sum of absolute differences
 SATD: Sum of absolute transform differences (more complex than SAD)
 POC: Picture Order Count, see below:
 
-/****************************************************************************
+/*************************
  * x264_encoder_encode:
  *  XXX: i_poc   
  *       i_frame 
@@ -45,4 +45,5 @@ POC: Picture Order Count, see below:
  *       P      4   2*6
  *       B      5   2*4
  *       B      6   2*5
- ****************************************************************************/
+ *************************
+
