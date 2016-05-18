@@ -207,6 +207,11 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     const int i_pixel = m->i_pixel;                 /* Block size type */
     const int stride = m->i_stride[0];              
 
+    /* Thresholds for early stopping */
+    int T1 = 256 + 15; /* +15 due to the cost of MVs */
+    int T2 = T1;
+    int T3 = T2;
+
     int i_me_range = h->param.analyse.i_me_range;
     int bmx, bmy, bcost = COST_MAX;
     int bpred_cost = COST_MAX;
@@ -246,6 +251,9 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     /* Candidate set A */
     bcost = h->pixf.fpelcmp[i_pixel]( p_fenc, FENC_STRIDE, &p_fref_w[bmy*stride+bmx], stride ) + BITS_MVD( bmx, bmy );
     printf("%4i ",bw*bh); /* JSOG: Search Positions (SP) */
+    
+    if( bcost < T1 )
+        goto early_termination;
 
     /* Candidate set B */
     int i = 0;
@@ -268,6 +276,9 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         }        
     }
 
+    if( bcost < T2 )
+        goto early_termination;
+
     /* Candidate set C */
     if( c_mvc > 0 )
     {        
@@ -287,6 +298,8 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         }        
     }
     
+    if( bcost < T3 )
+        goto early_termination;    
 
     switch( h->mb.i_me_method )
     {
@@ -316,7 +329,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
 
 
     /* -> qpel mv */   
-    copy_mvs: 
+    early_termination: 
     if( h->mb.i_subpel_refine < 3 )
     {
         uint32_t bmv = pack16to32_mask(bmx,bmy);
