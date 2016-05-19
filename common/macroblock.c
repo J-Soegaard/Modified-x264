@@ -287,6 +287,9 @@ int x264_macroblock_cache_allocate( x264_t *h )
             PREALLOC( h->mb.mvr[i][j], 2 * (i_mb_count + 1) * sizeof(int16_t) );
     }
 
+    /* Preallocate MB costs */
+    PREALLOC( h->mb.i_mb_cost, (i_mb_count + 1) * sizeof(int) );
+
     if( h->param.analyse.i_weighted_pred )
     {
         int i_padv = PADV << PARAM_INTERLACED;

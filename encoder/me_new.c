@@ -205,17 +205,20 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     const int bw = x264_pixel_size[m->i_pixel].w;   /* Blockwidth */
     const int bh = x264_pixel_size[m->i_pixel].h;   /* Blockheight */
     const int i_pixel = m->i_pixel;                 /* Block size type */
-    const int stride = m->i_stride[0];              
+    const int stride = m->i_stride[0];           
 
     /* Thresholds for early stopping */
     int T1 = 256 + 15; /* +15 due to the cost of MVs */
     int T2 = T1;
     int T3 = T2;
+    int cost_left = h->mb.i_mb_cost[h->mb.i_mb_left_xy[0]];
+    int cost_top = h->mb.i_mb_cost[h->mb.i_mb_top_xy];
+    int cost_topright = h->mb.i_mb_cost[h->mb.i_mb_topright_xy];
+    int cost_prev = 100000;
 
     int i_me_range = h->param.analyse.i_me_range;
     int bmx, bmy, bcost = COST_MAX;
     int bpred_cost = COST_MAX;
-    int pmx, pmy;
     int c_mvc = i_mvc-b_mvc;
     pixel *p_fenc = m->p_fenc[0];
     pixel *p_fref_w = m->p_fref_w;
@@ -229,7 +232,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     #define pack16to32_mask2(mx,my) ((mx<<16)|(my&0x7FFF))
     uint32_t mv_min = pack16to32_mask2( -mv_x_min, -mv_y_min );
     uint32_t mv_max = pack16to32_mask2( mv_x_max, mv_y_max )|0x8000;
-    uint32_t pmv, bpred_mv = 0;
+    uint32_t bpred_mv = 0;
     
     #define CHECK_MVRANGE(mx,my) (!(((pack16to32_mask2(mx,my) + mv_min) | (mv_max - pack16to32_mask2(mx,my))) & 0x80004000))
     
@@ -237,12 +240,26 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     const uint16_t *p_cost_mvy = m->p_cost_mv - m->mvp[1];  
     
     /* Calculate and check the fullpel MVP first */
-    bmx = pmx = x264_clip3( FPEL(m->mvp[0]), mv_x_min, mv_x_max );
-    bmy = pmy = x264_clip3( FPEL(m->mvp[1]), mv_y_min, mv_y_max );
-    pmv = pack16to32_mask( bmx, bmy );
+    bmx = x264_clip3( FPEL(m->mvp[0]), mv_x_min, mv_x_max );
+    bmy = x264_clip3( FPEL(m->mvp[1]), mv_y_min, mv_y_max );
 
     /* Remove duplicates */
     remove_duplicates_in_MV_candidates( bmx, bmy, mvc, &i_mvc, &b_mvc, &c_mvc);
+
+    /* Calculate Thresholds from EPZS paper */
+    if( h->fref[0][0]->i_ref[0] > 0 )
+        cost_prev = h->fref[0][0]->mv_cost[h->mb.i_mb_xy];
+    if( cost_topright == 0 )
+        cost_topright = 100000;
+    if( cost_top == 0 )
+        cost_top = 100000;
+    if( cost_left == 0 )
+        cost_left = 100000;
+    T2 = X264_MIN( cost_prev, cost_topright );
+    T2 = X264_MIN( T2, cost_top );
+    T2 = X264_MIN( T2, cost_left );
+    T2 = 1.2 * T2 + 128;
+    T3 = T2;
 
     /* JSOG: Print MB number and info */
     printf("\nMB %3i x %3i, Size B: %i Size C: %i \n",h->mb.i_mb_x,h->mb.i_mb_y,b_mvc,c_mvc);
@@ -272,7 +289,6 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         if(best_i){
             bmx = mvc[best_i][0];
             bmy = mvc[best_i][1];
-            pmv = pack16to32_mask( bmx, bmy );
         }        
     }
 
@@ -294,7 +310,6 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         if(best_i){
             bmx = mvc[best_i][0];
             bmy = mvc[best_i][1];
-            pmv = pack16to32_mask( bmx, bmy );
         }        
     }
     
@@ -336,9 +351,6 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         uint32_t bmv_spel = SPELx2(bmv);
         m->cost_mv = p_cost_mvx[bmx<<2] + p_cost_mvy[bmy<<2];
         m->cost = bcost;
-    /* compute the real cost */
-        if( bmv == pmv ) 
-            m->cost += m->cost_mv;
         M32( m->mv ) = bmv_spel;
     }
     else
@@ -348,6 +360,16 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         M32(m->mv) = bpred_cost < bcost ? bpred_mv : bmv_spel;
         m->cost = X264_MIN( bpred_cost, bcost );
     }
+
+/*    printf("\n Prev cost: %i ",cost_left);
+    printf("\n Current cost: %i ", bcost);
+
+    if( h->fref[0][0]->i_ref[0] > 0 )
+    {
+        x264_frame_t *l0 = h->fref[0][0];
+        printf("\n Prev cost: %i ",l0->mv_cost[h->mb.i_mb_xy]);
+    } */
+
 
 }
 

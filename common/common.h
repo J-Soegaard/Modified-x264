@@ -747,6 +747,9 @@ struct x264_t
                                              * NOTE: this will fail on resolutions above 2^16 MBs... */
         uint8_t *field;
 
+        /* MB coding cost */
+        int     *i_mb_cost;
+
          /* buffer for weighted versions of the reference frames */
         pixel *p_weight_buf[X264_REF_MAX];
 

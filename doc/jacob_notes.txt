@@ -31,6 +31,8 @@ ABBREVIATIONS:
 
 SAD: Sum of absolute differences
 SATD: Sum of absolute transform differences (more complex than SAD)
+FENC: Frame for encoding
+FDEC: Frame for decoding
 POC: Picture Order Count, see below:
 
 /*************************

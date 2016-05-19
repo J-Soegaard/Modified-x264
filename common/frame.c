@@ -182,6 +182,9 @@ static x264_frame_t *x264_frame_new( x264_t *h, int b_fdec )
 
     if( b_fdec ) /* fdec frame */
     {
+        /* Preallocate MV cost */
+        PREALLOC( frame->mv_cost, i_mb_count * sizeof(int) );
+
         PREALLOC( frame->mb_type, i_mb_count * sizeof(int8_t) );
         PREALLOC( frame->mb_partition, i_mb_count * sizeof(uint8_t) );
         PREALLOC( frame->mv[0], 2*16 * i_mb_count * sizeof(int16_t) );
