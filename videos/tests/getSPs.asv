@@ -1,0 +1,30 @@
+clear all
+close all
+clc
+
+txt = fileread('100frames_EPZS_print.log');
+
+pattern = 'SP:*[^\n]*';
+data = regexp(txt, pattern,'match');
+
+SP = 0;
+for k = 1:length(data)
+    MB = strread(data{k}(4:end));
+    SP = SP + sum(MB);
+end
+
+disp(['EPZS MSP: ' num2str(SP/1e6/100,2)])
+
+
+txt = fileread('100frames_EPZS_newSets_print.log');
+
+pattern = 'SP:*[^\n]*';
+data = regexp(txt, pattern,'match');
+
+SP = 0;
+for k = 1:length(data)
+    MB = strread(data{k}(4:end));
+    SP = SP + sum(MB);
+end
+
+disp(['EPZS New Sets MSP: ' num2str(SP/1e6,2)])
