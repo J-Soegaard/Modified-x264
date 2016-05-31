@@ -150,7 +150,7 @@ do\
 #define SPEL(mv) ((mv)<<2)     /* ... and the reverse. */
 #define SPELx2(mv) (SPEL(mv)&0xFFFCFFFC) /* for two packed MVs */
 
-void remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mvc)[2], int *i_mvc, int *b_mvc, int *c_mvc){
+void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mvc)[2], int *i_mvc, int *b_mvc, int *c_mvc, int stride, int mb_count){
 
     int i = i_mvc[0];
     int b = b_mvc[0];
@@ -165,7 +165,10 @@ void remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mvc)[2], in
     {
         test = 1;
 
-        if( (mvc[k][0] == bmx) && (mvc[k][1] == bmy) )
+        if( mvc[k][1]*stride+mvc[k][0] < 0 || mvc[k][1]*stride+mvc[k][0] > mb_count){
+            test = 0;
+        }
+        else if( (mvc[k][0] == bmx) && (mvc[k][1] == bmy) )
         {
                 test = 0;
         }
@@ -244,7 +247,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     bmy = x264_clip3( FPEL(m->mvp[1]), mv_y_min, mv_y_max );
 
     /* Remove duplicates */
-    remove_duplicates_in_MV_candidates( bmx, bmy, mvc, &i_mvc, &b_mvc, &c_mvc);
+    clip_and_remove_duplicates_in_MV_candidates( bmx, bmy, mvc, &i_mvc, &b_mvc, &c_mvc, stride, h->mb.i_mb_count);
 
     /* Calculate Thresholds from EPZS paper */
     if( h->fref[0][0]->i_ref[0] > 0 )

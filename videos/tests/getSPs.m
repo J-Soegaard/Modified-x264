@@ -15,6 +15,7 @@ end
 
 disp(['EPZS MSP per frame: ' num2str(SP/100e6,4)])
 
+%% New sets
 
 txt = fileread('100frames_EPZS_newSets_print.log');
 

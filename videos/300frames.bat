@@ -1,6 +1,6 @@
 ..\x264 ^
 	--input-res 1152x528 ^
-	--frames 3  ^
+	--frames 300  ^
 	--keyint 301 ^
 	--bitrate 10000 ^
 	--psnr ^
@@ -19,9 +19,9 @@
 	--partition none ^
 	--subme 1 ^
 	--weightp 0 ^
-	--me dia ^
+	--me esa ^
 	--verbose ^
 	--threads 1 ^
 test.yuv ^
--o 3frames.264 ^
-&1>3frames_print.log
+-o 300frames.264 ^
+&1>300frames_print.log
