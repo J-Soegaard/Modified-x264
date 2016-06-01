@@ -170,7 +170,7 @@ void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mv
         }
         else if( (mvc[k][0] == bmx) && (mvc[k][1] == bmy) )
         {
-                test = 0;
+            test = 0;
         }
         else
         {
@@ -178,8 +178,8 @@ void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mv
             {
                 if( (mvc[k][0] == new_mvc[j][0]) && (mvc[k][1] == new_mvc[j][1]) )
                 {
-                        test = 0;
-                        break;   
+                    test = 0;
+                    break;   
                 }
             }
         }
@@ -319,31 +319,24 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     if( bcost < T3 )
         goto early_termination;    
 
-    switch( h->mb.i_me_method )
+    /* diamond search, radius 1 */
+    bcost <<= 4;
+    i = i_me_range;
+    do
     {
-        case X264_ME_DIA:
-        {
-            /* diamond search, radius 1 */
-            bcost <<= 4;
-            i = i_me_range;
-            do
-            {
-                COST_MV_X4_DIR( 0,-1, 0,1, -1,0, 1,0, costs );
+        COST_MV_X4_DIR( 0,-1, 0,1, -1,0, 1,0, costs );
                     printf("%4i ",4*bw*bh); /* JSOG: Search Positions (SP) */
-                    COPY1_IF_LT( bcost, (costs[0]<<4)+1 );
-                    COPY1_IF_LT( bcost, (costs[1]<<4)+3 );
-                    COPY1_IF_LT( bcost, (costs[2]<<4)+4 );
-                    COPY1_IF_LT( bcost, (costs[3]<<4)+12 );
-                    if( !(bcost&15) )
-                        break;
-                    bmx -= (bcost<<28)>>30;
-                    bmy -= (bcost<<30)>>30;
-                    bcost &= ~15;
-            } while( --i && CHECK_MVRANGE(bmx, bmy) );
-            bcost >>= 4;
+        COPY1_IF_LT( bcost, (costs[0]<<4)+1 );
+        COPY1_IF_LT( bcost, (costs[1]<<4)+3 );
+        COPY1_IF_LT( bcost, (costs[2]<<4)+4 );
+        COPY1_IF_LT( bcost, (costs[3]<<4)+12 );
+        if( !(bcost&15) )
             break;
-        }
-    }
+        bmx -= (bcost<<28)>>30;
+        bmy -= (bcost<<30)>>30;
+        bcost &= ~15;
+    } while( --i && CHECK_MVRANGE(bmx, bmy) );
+    bcost >>= 4;
 
 
     /* -> qpel mv */   
