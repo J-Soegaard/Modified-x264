@@ -829,7 +829,7 @@ void x264_me_search_ref( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_mvc, 
         refine_subpel( h, m, hpel, qpel, p_halfpel_thresh, 0 );
     }
 }
-#undef COST_MV
+#undef COST_MV 
 
 void x264_me_refine_qpel( x264_t *h, x264_me_t *m )
 {

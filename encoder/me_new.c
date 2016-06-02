@@ -156,16 +156,15 @@ void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mv
     int b = b_mvc[0];
     int k,j;    
     char test;
-    ALIGNED_4( int16_t new_mvc[10][2] );
     int n_i = 0;
     int n_b = 0;
     int n_c = 0;
 
     for( k=0 ; k<i ; k++ )
     {
-        test = 1;
+        test = 1;        
 
-        if( mvc[k][1]*stride+mvc[k][0] < 0 || mvc[k][1]*stride+mvc[k][0] > mb_count){
+        if( (mvc[k][1]*stride+mvc[k][0] < 0) || (mvc[k][1]*stride+mvc[k][0] > mb_count) ){
             test = 0;
         }
         else if( (mvc[k][0] == bmx) && (mvc[k][1] == bmy) )
@@ -176,7 +175,7 @@ void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mv
         {
             for( j=0 ; j<n_i ; j++ )
             {
-                if( (mvc[k][0] == new_mvc[j][0]) && (mvc[k][1] == new_mvc[j][1]) )
+                if( (mvc[k][0] == mvc[j][0]) && (mvc[k][1] == mvc[j][1]) )
                 {
                     test = 0;
                     break;   
@@ -186,8 +185,8 @@ void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mv
 
         if( test )
         {
-            new_mvc[n_i][0] = mvc[k][0];
-            new_mvc[n_i][1] = mvc[k][1];
+            mvc[n_i][0] = mvc[k][0];
+            mvc[n_i][1] = mvc[k][1];
             n_i++;
             if( k<b )
                 n_b++;
@@ -196,7 +195,6 @@ void clip_and_remove_duplicates_in_MV_candidates( int bmx, int bmy, int16_t (*mv
         }        
     }   
 
-    mvc = new_mvc;
     *i_mvc = n_i;
     *b_mvc = n_b;
     *c_mvc = n_c;
@@ -285,7 +283,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
             mx = mvc[i][0];
             my = mvc[i][1];
             cost = h->pixf.fpelcmp[i_pixel]( p_fenc, FENC_STRIDE, &p_fref_w[my*stride+mx], stride ) + BITS_MVD( mx, my );
-            printf("%4i ",bw*bh); /* JSOG: Search Positions (SP) */
+            printf("%4i ",bw*bh); 
             COPY2_IF_LT( bcost, cost, best_i, i );
         }
 
@@ -306,7 +304,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
             mx = mvc[i][0];
             my = mvc[i][1];
             cost = h->pixf.fpelcmp[i_pixel]( p_fenc, FENC_STRIDE, &p_fref_w[my*stride+mx], stride ) + BITS_MVD( mx, my );
-            printf("%4i ",bw*bh); /* JSOG: Search Positions (SP) */
+            printf("%4i ",bw*bh); 
             COPY2_IF_LT( bcost, cost, best_i, i );
         }
 
@@ -325,7 +323,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     do
     {
         COST_MV_X4_DIR( 0,-1, 0,1, -1,0, 1,0, costs );
-                    printf("%4i ",4*bw*bh); /* JSOG: Search Positions (SP) */
+        printf("%4i ",4*bw*bh); /* JSOG: Search Positions (SP) */
         COPY1_IF_LT( bcost, (costs[0]<<4)+1 );
         COPY1_IF_LT( bcost, (costs[1]<<4)+3 );
         COPY1_IF_LT( bcost, (costs[2]<<4)+4 );
