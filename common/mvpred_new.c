@@ -9,12 +9,6 @@ void x264_mb_predict_mv_ref16x16_EPZS( x264_t *h, int i_list, int i_ref, int16_t
     int16_t (*mvr)[2] = h->mb.mvr[i_list][i_ref];
     int i = 0, b = 0; // Counter for set B and C
 
-    
-    /* No (0,0) MV */ 
-    /* mvc[i][0] = 0;
-    mvc[i][1] = 0; // (0,0) MV
-    i++; */ 
-
     /* EPZS Set B */
     if( h->fref[0][0]->i_ref[0] > 0 )
     {
@@ -72,4 +66,53 @@ void x264_mb_predict_mv_ref16x16_EPZS( x264_t *h, int i_list, int i_ref, int16_t
     *i_mvc = i;
     *b_mvc = b;
 
+}
+
+/*
+Motion vector prediction by global motion
+*/
+void x264_mb_predict_mv_16x16_GM( x264_t *h, int i_list, int i_ref, int16_t mvp[2] )
+{
+    /*--------------------------------*/
+    /* Get H - very ineffiecently */
+    /*--------------------------------*/
+    FILE *fid;
+    float H[3][3];
+    int r,c,frame,k;
+    char str[10];
+
+    printf("\n FRAME: %i \n ",h->i_frame_num);   
+    if( (fid = fopen("H.dat", "r")) == NULL)
+        printf("Couldn't open H.dat file.");
+
+//FIXME: Something is broken here.
+
+    for(k = 0; k<h->i_frame_num; k++){
+        fscanf(fid, "%s", str);
+        fscanf(fid, "%i", &frame);
+        for (r = 0; r < 3; r++){
+            for (c = 0; c < 3; c++){
+                fscanf(fid, "%f", &H[r][c]);
+            }
+        }
+        if( frame == h->i_frame_num )
+            break;
+    }
+
+/*    printf("%s %i \n",str,frame);
+    for (r = 0; r < 3; r++){
+        for (c = 0; c < 3; c++){
+            printf("%f ", H[r][c]);
+        }
+        printf("\n");
+    }*/
+    /*--------------------------------*/
+
+/*    mvp[0] = (int16_t) H[0][2];
+    mvp[1] = (int16_t) H[1][2];*/
+
+    mvp[0] = 0;
+    mvp[1] = 0;
+
+    printf("\n :: %i, %i :: \n ",mvp[0],mvp[1]);
 }

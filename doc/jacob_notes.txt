@@ -4,7 +4,7 @@ Motion Estimation
 "encoder/me.c" is used for motion estimation.
 "common/mvpred.c" is used to try to predict motion vectors (from neighbours etc.).
 
-MOTION ESTIMATION (P-frames) is done by the following functions (using EPZS) for 16x16. All functions are always called no matter the chosen motion estimation method set by the optional input parameter:
+MOTION ESTIMATION (P-frames) is done by the following functions (using EPZS) for 16x16. All functions are always executed no matter the chosen motion estimation method set by the optional input parameter:
 
 	x264_mb_predict_mv_16x16( h, 0, i_ref, m.mvp );
 		- Finds the median predictor
@@ -18,7 +18,7 @@ MOTION ESTIMATION (P-frames) is done by the following functions (using EPZS) for
 		- Calculate best MV candidate from above (SAD) and use it as starting point for ME (defualt: 1-step diamond).
 		- Also defined as "x264_me_search" in me.h
 
-NOTE: No early stopping seems to be defined for the EPZS part.
+NOTE: No early stopping seems to be defined for original x264.
 
 
 For smaller prediction block sizes the following functions are used (e.g. 4x4):

@@ -2,9 +2,15 @@
 	--input-res 1152x528 ^
 	--frames 4  ^
 	--keyint 301 ^
+	--fps 25.0 ^
+ 	^
 	--bitrate 10000 ^
 	--psnr ^
-	--ssim ^
+ 	^
+	--profile baseline ^
+	--preset ultrafast ^
+ 	^
+	--no-8x8dct ^
 	--bframes 0 ^
 	--no-cabac ^
 	--no-deblock ^
@@ -15,13 +21,13 @@
 	--scenecut 0 ^
 	--trellis 0 ^
 	--no-weightb ^
-	--no-8x8dct ^
 	--partition none ^
-	--subme 1 ^
+	--subme 0 ^
 	--weightp 0 ^
 	--me dia ^
 	--verbose ^
 	--threads 1 ^
+	--aq-mode 0 ^
 test.yuv ^
 -o 4frames.264 ^
 &1>4frames_print.log

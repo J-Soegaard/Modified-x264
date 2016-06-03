@@ -1402,7 +1402,8 @@ static void x264_mb_analyse_inter_p16x16( x264_t *h, x264_mb_analysis_t *a )
         LOAD_HPELS( &m, h->mb.pic.p_fref[0][i_ref], 0, i_ref, 0, 0 );
         LOAD_WPELS( &m, h->mb.pic.p_fref_w[i_ref], 0, i_ref, 0, 0 );
 
-        x264_mb_predict_mv_16x16( h, 0, i_ref, m.mvp ); /* Median MV */
+        /*x264_mb_predict_mv_16x16( h, 0, i_ref, m.mvp );*/ /* Median MV */
+        x264_mb_predict_mv_16x16_GM( h, 0, i_ref, m.mvp ); /* Global Motion */
 
         if( h->mb.ref_blind_dupe == i_ref )
         {
