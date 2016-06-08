@@ -102,6 +102,7 @@ typedef struct x264_frame
     uint8_t *field;
     uint8_t *effective_qp;
     int *mv_cost;
+    float H[3][3];
 
     /* Stored as (lists_used << LOWRES_COST_SHIFT) + (cost).
      * Doesn't need special addressing for intra cost because
@@ -176,9 +177,9 @@ typedef struct x264_frame
     uint8_t *mb_info;
     void (*mb_info_free)( void* );
 
-#if HAVE_OPENCL
-    x264_frame_opencl_t opencl;
-#endif
+    #if HAVE_OPENCL
+        x264_frame_opencl_t opencl;
+    #endif
 } x264_frame_t;
 
 /* synchronized frame list */

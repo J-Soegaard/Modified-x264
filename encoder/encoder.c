@@ -3265,11 +3265,11 @@ int     x264_encoder_encode( x264_t *h,
 
         if( fenc->i_pic_struct == PIC_STRUCT_AUTO )
         {
-#if HAVE_INTERLACED
-            int b_interlaced = fenc->param ? fenc->param->b_interlaced : h->param.b_interlaced;
-#else
-            int b_interlaced = 0;
-#endif
+            #if HAVE_INTERLACED
+                int b_interlaced = fenc->param ? fenc->param->b_interlaced : h->param.b_interlaced;
+            #else
+                int b_interlaced = 0;
+            #endif
             if( b_interlaced )
             {
                 int b_tff = fenc->param ? fenc->param->b_tff : h->param.b_tff;

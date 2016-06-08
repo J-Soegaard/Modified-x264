@@ -364,6 +364,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         printf("\n Prev cost: %i ",l0->mv_cost[h->mb.i_mb_xy]);
     } */
 
+    printf("\n :: %i, %i :: \n ",bmx,bmy);        
 
 }
 

@@ -75,17 +75,17 @@ static x264_frame_t *x264_frame_new( x264_t *h, int b_fdec )
     int i_stride, i_width, i_lines, luma_plane_count;
     int i_padv = PADV << PARAM_INTERLACED;
     int align = 16;
-#if ARCH_X86 || ARCH_X86_64
-    if( h->param.cpu&X264_CPU_CACHELINE_64 )
-        align = 64;
-    else if( h->param.cpu&X264_CPU_CACHELINE_32 || h->param.cpu&X264_CPU_AVX )
-        align = 32;
-#endif
-#if ARCH_PPC
-    int disalign = 1<<9;
-#else
-    int disalign = 1<<10;
-#endif
+    #if ARCH_X86 || ARCH_X86_64
+        if( h->param.cpu&X264_CPU_CACHELINE_64 )
+            align = 64;
+        else if( h->param.cpu&X264_CPU_CACHELINE_32 || h->param.cpu&X264_CPU_AVX )
+            align = 32;
+    #endif
+    #if ARCH_PPC
+        int disalign = 1<<9;
+    #else
+        int disalign = 1<<10;
+    #endif
 
     CHECKED_MALLOCZERO( frame, sizeof(x264_frame_t) );
     PREALLOC_INIT
@@ -790,6 +790,29 @@ x264_frame_t *x264_frame_pop_unused( x264_t *h, int b_fdec )
 
     memset( frame->weight, 0, sizeof(frame->weight) );
     memset( frame->f_weighted_cost_delta, 0, sizeof(frame->f_weighted_cost_delta) );
+
+    /*--------------------------------*/
+    /* Get H                          */
+    /*--------------------------------*/
+    FILE *fid;
+    int r,c,frame_num,k;
+    char str[10];
+    if( (fid = fopen("H.dat", "r")) == NULL)
+        printf("Couldn't open H.dat file.");
+
+    for(k = 0; k < (h->i_frame_num) ; k++){
+        fscanf(fid, "%s", str);    
+        fscanf(fid, "%i", &frame_num);
+        for (r = 0; r < 3; r++){
+            for (c = 0; c < 3; c++){
+                fscanf(fid, "%f", &(frame->H[r][c]) );
+            }
+        }
+        if( frame_num == (h->i_frame_num+1) )
+            break;
+    }
+    fclose(fid);
+    /*--------------------------------*/
 
     return frame;
 }
