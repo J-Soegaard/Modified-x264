@@ -74,8 +74,23 @@ Motion vector prediction by global motion
 void x264_mb_predict_mv_16x16_GM( x264_t *h, int i_list, int i_ref, int16_t mvp[2] )
 {
 
-    mvp[0] = (int16_t) -h->fenc->H[0][2];
-    mvp[1] = (int16_t) -h->fenc->H[1][2];
+    int c,r;
+    float H[3][3],z,wi,he;
+
+    /*mvp[0] = (int16_t) -h->fenc->H[0][2];
+    mvp[1] = (int16_t) -h->fenc->H[1][2];*/
+
+    for(r = 0; r < 3; r++){
+        for(c = 0; c < 3; c++)
+            H[r][c] = h->fenc->H[r][c];
+    }
+
+    wi = h->mb.i_mb_width*16/2;
+    he = h->mb.i_mb_height*16/2;
+
+    z = H[2][0] * wi + H[2][1] * he + H[2][2] ;
+    mvp[0] = (int16_t) round(wi-(( H[0][0]*wi + H[0][1] * he + H[0][2]) / z));
+    mvp[1] = (int16_t) round(he-(( H[1][0]*wi + H[1][1] * he + H[2][2]) / z));
 
     printf("\n :: %i, %i :: \n ",mvp[0],mvp[1]);
 }

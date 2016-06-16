@@ -241,8 +241,11 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     const uint16_t *p_cost_mvy = m->p_cost_mv - m->mvp[1];  
     
     /* Calculate and check the fullpel MVP first */
-    bmx = x264_clip3( FPEL(m->mvp[0]), mv_x_min, mv_x_max );
-    bmy = x264_clip3( FPEL(m->mvp[1]), mv_y_min, mv_y_max );
+ /*   printf("\n :: %i, %i :: \n ",m->mvp[0],m->mvp[1]); */      
+/*    bmx = x264_clip3( FPEL(m->mvp[0]), mv_x_min, mv_x_max );
+    bmy = x264_clip3( FPEL(m->mvp[1]), mv_y_min, mv_y_max );*/
+    bmx = m->mvp[0];
+    bmy = m->mvp[1];
 
     /* Remove duplicates */
     clip_and_remove_duplicates_in_MV_candidates( bmx, bmy, mvc, &i_mvc, &b_mvc, &c_mvc, stride, h->mb.i_mb_count);
@@ -270,7 +273,7 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
     bcost = h->pixf.fpelcmp[i_pixel]( p_fenc, FENC_STRIDE, &p_fref_w[bmy*stride+bmx], stride ) + BITS_MVD( bmx, bmy );
     printf("%4i ",bw*bh); /* JSOG: Search Positions (SP) */
     
-    if( bcost < T1 )
+    /*if( bcost < T1 )*/
         goto early_termination;
 
     /* Candidate set B */
@@ -363,8 +366,8 @@ void x264_me_search_ref_EPZS( x264_t *h, x264_me_t *m, int16_t (*mvc)[2], int i_
         x264_frame_t *l0 = h->fref[0][0];
         printf("\n Prev cost: %i ",l0->mv_cost[h->mb.i_mb_xy]);
     } */
-
-    printf("\n :: %i, %i :: \n ",bmx,bmy);        
+/*
+    printf("\n :: %i, %i :: \n ",bmx,bmy);   */     
 
 }
 
